@@ -1,5 +1,6 @@
 // Class of Ninja, only arguement is the name
 class Ninja {
+    // Co
     constructor(name) {
         this.name = name;
         this.health = 100;
