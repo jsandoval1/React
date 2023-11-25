@@ -1,4 +1,5 @@
 // Immutable polkemon array
+// the (.freeze) method is used to make the array immutable
 const pokemon = Object.freeze([
     { "id": 1, "name": "Bulbasaur", "types": ["poison", "grass"] },
     { "id": 5, "name": "Charmeleon", "types": ["fire"] },
