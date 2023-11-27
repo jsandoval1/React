@@ -17,10 +17,8 @@ const BoxForm = (props) => {
         e.preventDefault();
 
         // Create New Box
+        //* 3.) BoxForm.jsx creates a new box object
         const newBox = { color, height, width };
-        console.log("New Box: ", newBox);
-
-        // TODO: Logic to add new box to list of boxes
         props.onNewBox(newBox);
 
     }

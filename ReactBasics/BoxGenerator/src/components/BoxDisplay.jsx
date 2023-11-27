@@ -1,9 +1,11 @@
 import React from 'react'
 
 const BoxDisplay = (props) => {
-    // Destructure boxes from props
+
+    // todo: Destructure boxes from props
     const boxes = props.boxes;
 
+    // * 6.) BoxDisplay.jsx uses the boxes array to display all the boxes
     return (
         <div>
             <fieldset>
