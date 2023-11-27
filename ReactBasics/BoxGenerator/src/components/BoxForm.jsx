@@ -21,12 +21,7 @@ const BoxForm = (props) => {
         console.log("New Box: ", newBox);
 
         // TODO: Logic to add new box to list of boxes
-
-
-        // Reset Form
-        setColor("");
-        setHeight("");
-        setWidth("");
+        props.onNewBox(newBox);
 
     }
 
@@ -40,18 +35,24 @@ const BoxForm = (props) => {
     }
 
     const handleHeight = (e) => {
+        // number cannot be more than 50
         setHeight(e.target.value);
-        if (e.target.value.length < 1) {
-            setHeightError("Height must be at least 1 character!");
+        if (e.target.value > 50) {
+            setHeightError("Height cannot be more than 50!");
+        } else if (e.target.value < 1) {
+            setHeightError("Height must be at least 1!");
         } else {
             setHeightError("");
         }
     }
 
     const handleWidth = (e) => {
+        // number cannot be more than 50
         setWidth(e.target.value);
-        if (e.target.value.length < 1) {
-            setWidthError("Width must be at least 1 character!");
+        if (e.target.value > 50) {
+            setWidthError("Width cannot be more than 50!");
+        } else if (e.target.value < 1) {
+            setWidthError("Width must be at least 1!");
         } else {
             setWidthError("");
         }
