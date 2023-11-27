@@ -122,11 +122,13 @@ const UserForm = (props) => {
                 )}
             </div>
             <div>
-                {
-                    usernameError || emailError || passwordError ?
-                        <input type="submit" value="Create User" disabled></input> :
-                        <input type="submit" value="Create User"></input>
-                }
+                <button type="submit" disabled={
+                    // disable the button if any of the fields are empty
+                    !username || !email || !password
+                    ||
+                    // disable the button if any of the error messages are showing
+                    usernameError || emailError || passwordError
+                }>Create User</button>
             </div>
 
             {/* JSON to display the state */}
