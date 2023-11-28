@@ -1,33 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import TabButtons from './components/TabButtons'
+import TabContent from './components/TabContent'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Initialize 'selectedTab' with an initial value of 0, this makes the first tab default to being activated (index 0)
+  const [selectedTab, setSelectedTab] = useState(0)
+
+  // Function 'handleTabClick'
+  const handleTabClick = (index) => {
+    setSelectedTab(index) // Set the 'selectedTab' state to the 'index' argument
+  }
+
+  // Creating an array named 'tabsData' containing objects with tab information
+  const Tabs = [
+    {
+      label: 'Tab 1',
+      content: 'Content for Tab 1',
+    },
+    {
+      label: 'Tab 2',
+      content: 'Content for Tab 2',
+    },
+    {
+      label: 'Tab 3',
+      content: 'Content for Tab 3',
+    }
+  ]
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="App">
+        <h1> Tabs </h1>
+        <TabButtons tabButtons={Tabs} handleTabClick={handleTabClick} />
+        <TabContent tabContent={Tabs} selectedTab={selectedTab} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
