@@ -1,39 +1,34 @@
-import { useState } from 'react'
 import './App.css'
+import { useState } from 'react'
 import TabButtons from './components/TabButtons'
 import TabContent from './components/TabContent'
 
 function App() {
-  // Initialize 'selectedTab' with an initial value of 0, this makes the first tab default to being activated (index 0)
-  const [selectedTab, setSelectedTab] = useState(0)
 
-  // Function 'handleTabClick'
-  const handleTabClick = (index) => {
-    setSelectedTab(index) // Set the 'selectedTab' state to the 'index' argument
+  // 1.) State of the currently selected tab in TabButtons.jsx component is what determines what is rendered in the TabContent.jsx component. ✅
+  // 2.) The state of the currently selected tab in TabButtons.jsx component is managed by the App.jsx component. ✅
+  const [selectedTab, setSelectedTab] = useState(1)
+
+  // function to update the state of the currently selected tab in TabButtons.jsx component, which is passed to the TabButtons.jsx component as a prop
+  const updateSelectedTab = (tab) => {
+    setSelectedTab(tab)
+    console.log('App.jsx: State changed to: ', tab)
   }
-
-  // Creating an array named 'tabsData' containing objects with tab information
-  const Tabs = [
-    {
-      label: 'Tab 1',
-      content: 'Content for Tab 1',
-    },
-    {
-      label: 'Tab 2',
-      content: 'Content for Tab 2',
-    },
-    {
-      label: 'Tab 3',
-      content: 'Content for Tab 3',
-    }
-  ]
 
   return (
     <>
       <div className="App">
         <h1> Tabs </h1>
-        <TabButtons tabButtons={Tabs} handleTabClick={handleTabClick} />
-        <TabContent tabContent={Tabs} selectedTab={selectedTab} />
+        {/* 3.) The state of the currently selected tab in TabButtons.jsx component is passed to the TabButtons.jsx component as a prop. ✅ */}
+        <TabButtons updateSelectedTab={updateSelectedTab} />
+
+        <h6>⬆️State of the currently selected tab in TabButtons.jsx component is: {selectedTab} ⬆️</h6>
+        <h6>⚙️State is managed by App.jsx component.⚙️</h6>
+        <h6>⬇️TabContent.jsx component renders the content of the currently selected tab.⬇️</h6>
+
+        {/* 4.) TabContent.jsx component is passed the state of the currently selected tab in TabButtons.jsx component as a prop. ✅ */}
+        {/* 5.) TabContent.jsx component renders the content of the currently selected tab. ✅ */}
+        <TabContent selectedTab={selectedTab} />
       </div>
     </>
   )
