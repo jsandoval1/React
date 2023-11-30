@@ -2,22 +2,24 @@ import './App.css'
 import FormWrapper from './components/FormWrapper'
 import Navbar from './components/Navbar'
 import Wrapper from './components/Wrapper'
-import myContext from './context'
+import MyContext from './context'
 
 function App() {
-
   return (
     <>
       <div className="App">
-        <myContext.Provider value={"World"}>
-        <h1> NavBar Context </h1>
+        <MyContext.Provider value={"(World)!"}>
+          <h1> NavBar Context </h1>
 
-          <Wrapper>
+          <Wrapper >
+            {/* Navbar and FormWrapper are props.children of Wrapper and 
+            can access the context value */}
             <Navbar />
             <FormWrapper />
+
           </Wrapper>
 
-        </myContext.Provider>
+        </MyContext.Provider>
       </div>
     </>
   )
