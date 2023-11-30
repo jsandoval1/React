@@ -1,33 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import FormWrapper from './components/FormWrapper'
+import Navbar from './components/Navbar'
+import Wrapper from './components/Wrapper'
+import MyContext from './context'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  // There is no value yet because it is not inside the Provider
+  console.log("context value is: " + MyContext)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="App">
+        <MyContext.Provider value={"(World)!"}>
+          <h1> NavBar Context </h1>
+
+          <Wrapper >
+            {/* Navbar and FormWrapper are props.children of Wrapper and 
+            can access the context value */}
+            <Navbar />
+            <FormWrapper />
+
+          </Wrapper>
+
+        </MyContext.Provider>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
