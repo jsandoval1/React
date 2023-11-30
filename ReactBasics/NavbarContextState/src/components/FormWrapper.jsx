@@ -4,10 +4,9 @@ import myContext from '../context'
 import Form from './Form'
 
 const FormWrapper = (props) => {
-    // Set up context to use the context value
-    const context = useContext(myContext)
-
-    console.log(context + " from FormWrapper.jsx")
+    // { value } = useContextHook(variableName of the context provider)
+    // * We need to add {} because myContext contains an object with two properties: context and updateContext
+    const { context } = useContext(myContext)
 
     return (
         <div className="formWrapper">
