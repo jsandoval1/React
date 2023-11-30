@@ -6,6 +6,8 @@ const Navbar = (props) => {
     // Set up context to use the context value
     const context = useContext(myContext)
 
+    console.log(context + " from Navbar.jsx")
+
     return (
         <div className="navbar">
             <fieldset>

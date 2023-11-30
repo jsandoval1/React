@@ -7,6 +7,8 @@ const FormWrapper = (props) => {
     // Set up context to use the context value
     const context = useContext(myContext)
 
+    console.log(context + " from FormWrapper.jsx")
+
     return (
         <div className="formWrapper">
             <fieldset>

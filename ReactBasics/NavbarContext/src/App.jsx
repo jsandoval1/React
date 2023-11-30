@@ -5,6 +5,10 @@ import Wrapper from './components/Wrapper'
 import MyContext from './context'
 
 function App() {
+
+  // There is no value yet because it is not inside the Provider
+  console.log("context value is: " + MyContext)
+
   return (
     <>
       <div className="App">
