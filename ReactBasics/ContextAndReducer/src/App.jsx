@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import MainBody from './components/MainBody'
+import MyContext from './context/context'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
+      <MyContext.Provider value={"(World!)"}>
       <h1> Context and Reducer </h1>
+      
+      <MainBody/>
+
+      </MyContext.Provider>
     </div>
   )
 }
