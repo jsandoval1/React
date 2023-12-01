@@ -110,8 +110,8 @@ export default function Form() {
             alert('Please fix errors before submitting'); // alert error message
             return; // exit function
         }
+        console.log(state); // log state to console, moved console log before alert to show state
         alert(`Success! ${firstName.value} ${lastName.value}'s email is ${email.value}`); // alert success message
-        console.log(state); // log state to console
     }
 
 
