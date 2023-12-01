@@ -7,52 +7,58 @@ const initialState = {
     email: ''
 };
 
-// Creating the reducer function
+// Reducer takes in the current state and an action as arguments
 function reducer(state, action) {
-    return { // Returning a new state object
-        ...state, // Copying the existing state
-        [action.type]: action.payload // Updating the value of the key, action.type (name or email), to the value of action.payload (the value of the input)
+    return {
+        // We spread the current state (so we don't throw away any existing state)
+        ...state,
+        // updates the value of the input that matches the name of the input that was changed to the value of the input
+        [action.type]: action.payload
     };
 }
 
+// Main component that renders the form
 export default function FormWithReducer() {
-    const [state, dispatch] = useReducer(reducer, initialState); // Using the reducer hook, passing in the reducer function and the initial state
+    // We pass in our reducer and initialState to useReducer hook and it returns the current state and a dispatch function
+    const [state, dispatch] = useReducer(reducer, initialState);
 
-    // Creating the handleChange function
+    // This function handles the onChange event for the inputs
     function handleChange(e) {
-        const { name, value } = e.target; // Destructuring the name and value from the event target
-        dispatch({ // Dispatching an action
-            type: name, // The action type is the name of the input
-            payload: value  // The action payload is the value of the input
+        // We destructure the name and value properties from the event target
+        const { name, value } = e.target;
+        // We call dispatch
+        // We pass in an object with a type property that matches the name of the input that was changed
+        // We also pass in a payload property that matches the value of the input that was changed
+        dispatch({
+            type: name,
+            payload: value
         });
     }
 
     return (
         <div>
-            <fieldset>
-                <legend>Form With Reducer</legend>
-            {JSON.stringify(state)}
+            <p>Name (State): {JSON.stringify(state.name)} </p>
+            <p>Email (State): {JSON.stringify(state.email)} </p>
             <div>
                 <label>
-                    <span>Name:</span>{' '}
+                    <span>Name: </span>
                     <input
                         name="name"
-                        value={state.name}
+                        value={state.name} // We set the value of the input to the value of the name property on state
                         onChange={handleChange}
                     />
                 </label>
             </div>
             <div>
                 <label>
-                    <span>Email:</span>{' '}
+                    <span>Email: </span>
                     <input
                         name="email"
-                        value={state.email}
+                        value={state.email} // We set the value of the input to the value of the email property on state
                         onChange={handleChange}
                     />
                 </label>
             </div>
-            </fieldset>
         </div>
     );
 }
