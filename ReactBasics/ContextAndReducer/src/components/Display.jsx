@@ -3,13 +3,15 @@ import { useContext } from 'react'
 import MyContext from '../context/context'
 
 function Display() {
-    const context = useContext(MyContext)
+    // Desctructuring state and dispatch from context
+    const { state, dispatch } = useContext(MyContext)
 
     return (
         <div className='Display'>
             <fieldset>
                 <legend>Display.jsx Component</legend>
-                <p>Current context is: {context}</p>
+                <p>First Name: {state.firstName.value}</p>
+                <p>Last Name: {state.lastName.value}</p>
             </fieldset>
         </div>
     )

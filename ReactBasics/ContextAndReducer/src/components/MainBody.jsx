@@ -5,14 +5,15 @@ import Form from './Form'
 import Display from './Display'
 
 const MainBody = (props) => {
-    const context = useContext(MyContext)
+    // Desctructuring state and dispatch from context
+    const { state, dispatch } = useContext(MyContext)
 
     return (
         <fieldset>
             <legend>
                 MainBody.jsx component
             </legend>
-            <p>Current conext is {context}</p>
+            <p>Current state is: {JSON.stringify(state)}</p>
 
             <br />
             <Display />
