@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const PokemonList = () => {
-    const [pokemon, setPokemon] = useState([]); // keep track of the list of pokemon
-    const [currentList, setCurrentList] = useState([]); // keep track of the current list of pokemon to display
-    const [currentIndex, setCurrentIndex] = useState(0); // keep track of the current index of the pokemon array
+    // State is more convenient than props for storing data that changes over time
+    // This way we dont have make multiple API calls to get the same data
+    const [pokemon, setPokemon] = useState([]); 
+    const [currentList, setCurrentList] = useState([]); 
+    const [currentIndex, setCurrentIndex] = useState(0); 
 
     function fetchPokemon() {
         fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
