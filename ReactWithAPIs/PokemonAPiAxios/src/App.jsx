@@ -4,9 +4,15 @@ import PokemonListAxios from './components/PokemonListAxios'
 function App() {
 
   // * In order to use Axios, we need to install it first:
-  // npm install axios
-  // * Then we need to import it into our component
-  // import axios from 'axios'
+  
+  // ? Action: npm install axios
+  // Can see axios installed in package.json
+  // Can see axios installed in node_modules
+  // Can see axios installed in package-lock.json
+
+  // Then we need to import it into our component
+  // ? Action: import axios from 'axios'
+
   // This is demonstrated in the PokemonListAxios.jsx component
   return (
     <div className="App">
