@@ -43,9 +43,9 @@ const PokemonList = () => {
                     ))}
                 </ul>
                 {/* Conditionally render the Previous Button if the current index is greater than 0 */}
-                {currentIndex > 0 && <button onClick={handlePrevious}>Previous</button>}
+                {currentIndex > 0 ? <button onClick={handlePrevious}>Previous</button> : null}
                 {/* Conditionally render the Next button if the current index is less than the length of the pokemon array */}
-                {pokemon.length > 0 && <button onClick={handleNext}>Next</button>}
+                {currentIndex < pokemon.length - 5 ? <button onClick={handleNext}>Next</button> : null}
             </fieldset>
         </div>
     );
