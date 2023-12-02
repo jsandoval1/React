@@ -37,13 +37,13 @@ const PokemonList = () => {
                 <ul>
                     {currentList.map((poke, index) => (
                         <li key={index}>{poke.name}</li>
+                        
                     ))}
                 </ul>
                 {/* Conditionally render the Previous Button if the current index is greater than 0 */}
                 {currentIndex > 0 && <button onClick={handlePrevious}>Previous</button>}
                 {/* Conditionally render the Next button if the current index is less than the length of the pokemon array */}
                 {pokemon.length > 0 && <button onClick={handleNext}>Next</button>}
-                {/* Button to reset current index to 0 */}
             </fieldset>
         </div>
     );
