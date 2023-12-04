@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// Install react-router-dom with: npm install react-router-dom
+// To use routing, we need to wrap the entire app in a BrowserRouter component, this is done in main.jsx
+
 import './App.css'
+import React from 'react'
+import { Routes, Route, Link } from 'react-router-dom' // This is new, these are components that we can use to create routes
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  //Remember, we can write these functional components in their own files 
+  //to be exported and imported to the App component.
+  //We've combined them here to simplify our example.
+  const Home = (props) => {
+    return (
+      <div>
+        <fieldset>
+          <legend>Home Component</legend>
+        <h2 style={{ color: "red" }}>Home Component</h2>
+
+        {/* This is the new way of doing it, this is correct because it will not refresh the page */}
+        <p>Desired behavior:
+          <Link to={"/about"}> Go to About </Link>
+        </p>
+
+        <hr /> {/* This is just a horizontal line */}
+
+        {/* This is the old way of doing it, this is wrong because it will refresh the page */}
+        <p>Undesired refresh:
+          <a href="/about"> Go to About </a>
+        </p>
+
+        </fieldset>
+      </div>
+    );
+  }
+
+  const About = (props) => {
+    return (
+      <div>
+        <fieldset>
+          <legend>About Component</legend>
+        <h2 style={{ color: "blue" }}>About Component</h2>
+        <Link to={"/"}>Go Home</Link>
+        </fieldset>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <h1>Routing Example</h1>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </div>
   )
 }
 
