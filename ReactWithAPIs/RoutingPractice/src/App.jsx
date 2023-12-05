@@ -15,19 +15,21 @@ function App() {
       <div>
         <fieldset>
           <legend>Home Component</legend>
-        <h2 style={{ color: "red" }}>Home Component</h2>
+          <h2 style={{ color: "red" }}>Home Component</h2>
 
-        {/* This is the new way of doing it, this is correct because it will not refresh the page */}
-        <p>Desired behavior:
-          <Link to={"/about"}> Go to About </Link>
-        </p>
+          {/* This is the new way of doing it, this is correct because it will not refresh the page */}
+          <p>Desired behavior:
+            <Link to={"/about"}> Go to About </Link>
+          </p>
 
-        <hr /> {/* This is just a horizontal line */}
+          <hr /> {/* This is just a horizontal line */}
 
-        {/* This is the old way of doing it, this is wrong because it will refresh the page */}
-        <p>Undesired refresh:
-          <a href="/about"> Go to About </a>
-        </p>
+          {/* This is the old way of doing it, this is wrong because it will refresh the page */}
+          {/* An example of why we dont want to refresh the page is because we might lose data, ie. a form
+          or shopping cart. */}
+          <p>Undesired refresh:
+            <a href="/about"> Go to About </a>
+          </p>
 
         </fieldset>
       </div>
@@ -39,8 +41,8 @@ function App() {
       <div>
         <fieldset>
           <legend>About Component</legend>
-        <h2 style={{ color: "blue" }}>About Component</h2>
-        <Link to={"/"}>Go Home</Link>
+          <h2 style={{ color: "blue" }}>About Component</h2>
+          <Link to={"/"}>Go Home</Link>
         </fieldset>
       </div>
     );
