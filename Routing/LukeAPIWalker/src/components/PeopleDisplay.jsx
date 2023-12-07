@@ -5,7 +5,7 @@ import axios from 'axios';
 function PeopleDisplay() {
     const { id } = useParams() 
     const [people, setPeople] = useState({})
-    const [planet, setPlanet] = useState({}) // we need to store the planet data in state so we can display it
+    const [planet, setPlanet] = useState({}) // BONUS: we need to store the planet data in state so we can display it
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -13,10 +13,10 @@ function PeopleDisplay() {
         axios.get(`https://swapi.dev/api/people/${id}`)
             .then(response => {
                 setPeople(response.data);
-                return axios.get(response.data.homeworld); // returns a promise that we can chain .then() to
+                return axios.get(response.data.homeworld); // BONUS: returns a promise that we can chain .then() to
             })
             .then(response => {
-                setPlanet(response.data); // set the planet state to the homeworld data
+                setPlanet(response.data); // BONUS: set the planet state to the homeworld data
                 setLoading(false); // set loading to false since we got all the data we needed
             })
             .catch(err => console.log(err));
@@ -29,7 +29,7 @@ function PeopleDisplay() {
                 <p>Loading...</p>
             ) : (
                 <div className="peopleDisplay">
-                    
+
                     {/* Display the information of the person for the ID */}
                     <h2>{people.name}</h2>
                     <p>Height: {people.height} cm </p>
@@ -37,7 +37,7 @@ function PeopleDisplay() {
                     <p>Hair Color: {people.hair_color}</p>
                     <p>Skin Color: {people.skin_color}</p>
 
-                    {/* If the person has a homeworld, display the name and link to the planet */}
+                    {/* BONUS: If the person has a homeworld, display the name and link to the planet */}
                     <p>Homeworld: {people.homeworld ? <Link to={`/planets/${planet.id}`}>{planet.name}</Link> : "Unknown"}</p>
 
                     <Link to="/">Back to the form</Link>
