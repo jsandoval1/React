@@ -6,7 +6,7 @@ const UserController = require('../controllers/user.controller');
 module.exports = app => {
     app.get('/api/users', UserController.findAllUsers);
     app.get('/api/users/:id', UserController.findOneSingleUser);
-    app.patch('/api/users/:id', UserController.updateExistingUser);
+    app.patch('/api/users/:id', UserController.updateExistingUser); // PATCH is used for updating a single field
     app.post('/api/users', UserController.createNewUser);
     app.delete('/api/users/:id', UserController.deleteAnExistingUser);
 }
