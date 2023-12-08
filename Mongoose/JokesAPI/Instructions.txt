@@ -71,14 +71,14 @@ Step 9 - Create server.js file
 '''
 const express = require('express');
 const app = express();
-require (dotenv).config();
+require ('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
 require('./config/mongoose.config');
 
 app.use(express.json(), express.urlencoded({extended: true}));
 
-const AllMyRoutes = require('./routes/your.routes');
+const AllMyRoutes = require('./routes/user.routes');
 AllMyRoutes(app);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
@@ -86,5 +86,8 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 - install nodemon: npm i -D nodemon (this will install nodemon as a dev dependency) or use it if you already have it installed:
 - nodemon server.js
+- should see "Server running on port 8000" and "Established a connection to the database" in terminal
 
 Step 10 - Test Routes
+- go to Postman or Thunder Client and test routes
+
