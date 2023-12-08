@@ -13,5 +13,78 @@ Step 3 - Install Dependencies
 - npm init -y (creates package.json file)
 - npm i express mongoose dotenv (installs dependencies and node modules as well as package-lock.json file)
 - update .gitignore file to include node_modules and .env files
-- go into server.js file and require express and dotenv: require('dotenv').config();
 
+Step 4 - Create Express Server
+- go into server.js file and require express: const express = require('express');
+- create express app: const app = express();
+- create PORT variable: const PORT = process.env.PORT || 5000;
+- create app.listen function: app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+- create a test route: app.get('/', (req, res) => res.send('API is running...'));
+- go into server.js file and require express and dotenv: require('dotenv').config();
+- as well as connect to MongoDB Atlas cluster: const mongoose = require('mongoose'); 
+
+Step 5 - Connect Database to Server
+- Setting up mongoose.config.js file
+- go into config folder and create mongoose.config.js file
+- Add this into mongoose.config.js file: AND uri and password:
+
+'''
+const mongoose = require('mongoose');
+const dbName = process.env.DB;
+const username = process.env.ATLAS_USERNAME;
+const pw = process.env.ATLAS_PASSWORD;
+
+// Replace the uri string with your MongoDB deployment's connection string. So it goes from:
+// const uri = `mongodb+srv://${username}:${pw}@YOUR_CONNECTION_STRING_HERE/${dbName}?retryWrites=true&w=majority`;
+// to:
+const uri = `mongodb+srv://${username}:${pw}@testdb.5q0rwca.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+// the username and password are stored in environment variables on the server, so they are not hard-coded in the file.
+
+mongoose.connect(uri)
+    .then(() => console.log("Established a connection to the database"))
+    .catch(err => console.log("Something went wrong when connecting to the database", err));
+
+'''
+
+- Update the .env file with the following: 
+
+'''
+PORT=8000
+DB=my_db
+# mongo atlas connection
+ATLAS_USERNAME=YOUR_ATLAS_USERNAME
+ATLAS_PASSWORD=YOUR_ATLAS_PASSWORD
+'''
+
+Step 6- Create Models and Schemas
+- go into models folder and create modelname.model.js file
+
+Step 7 - Create controllers
+- go into controllers folder and create controllername.controller.js file
+
+Step 8 - Create routes
+- go into routes folder and create routename.routes.js file
+
+Step 9 - Create server.js file
+- server.js file should look like this: 
+
+'''
+const express = require('express');
+const app = express();
+require (dotenv).config();
+const PORT = process.env.PORT || 5000;
+
+require('./config/mongoose.config');
+
+app.use(express.json(), express.urlencoded({extended: true}));
+
+const AllMyRoutes = require('./routes/your.routes');
+AllMyRoutes(app);
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+'''
+
+- install nodemon: npm i -D nodemon (this will install nodemon as a dev dependency) or use it if you already have it installed:
+- nodemon server.js
+
+Step 10 - Test Routes
