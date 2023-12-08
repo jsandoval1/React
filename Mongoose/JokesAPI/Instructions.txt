@@ -1,0 +1,17 @@
+Step 1 - Set up MongoDB Atlas
+- Set up database cluster via MongoDB Atlas (https://www.mongodb.com/cloud/atlas) 
+- Go through details of naming cluster, selecting cloud provider, region, etc.
+- Set up database user and password along with IP address whitelist
+- Create cluster
+- Connect to cluster via MongoDB Driver
+
+Step 2 - Create Folders and Files for Project
+- Create folder for project (server folder) along with subfolders 
+- SUCH: config, models, routes, controllers. As well as a server.js file and .env file.
+
+Step 3 - Install Dependencies
+- npm init -y (creates package.json file)
+- npm i express mongoose dotenv (installs dependencies and node modules as well as package-lock.json file)
+- update .gitignore file to include node_modules and .env files
+- go into server.js file and require express and dotenv: require('dotenv').config();
+
