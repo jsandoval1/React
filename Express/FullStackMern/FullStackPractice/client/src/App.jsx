@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Main from './components/main';
+import './App.css';
+
+// In order for our frontend to access our backend and make requests, we need to use CORS.
+// CORS stands for Cross-Origin Resource Sharing.
+// By default, browsers block requests from different origins.
+// An origin is the combination of protocol (http or https), domain (example.com), and port (8000, 3000, etc).
+
+// In the terminal, run the following command:
+// npm install cors
+// Then, in server.js, add the following code:
+// const cors = require("cors");
+// app.use(cors());
+// Now, our frontend will be able to access our backend.
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1> FullStack Xtra Practice </h1>
+      <Main />
+    </div>
+  );
 }
+export default App;
 
-export default App
