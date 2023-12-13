@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import PersonForm from '../components/PersonForm';
 
 
 export default () => {
@@ -13,7 +14,7 @@ export default () => {
     return (
         <div>
             <fieldset>
-                <legend>Main.jsx component</legend>
+                <legend>Main.jsx component( views )</legend>
                 <h2>Message from the backend: {message}</h2>
 
                 {/* Explaining Error */}
@@ -37,6 +38,14 @@ export default () => {
                     <a href="http://localhost:8000/api"> http://localhost:8000/api </a>
                     in the browser to see the message in JSON format.
                 </h6>
+
+                {/* Using the PersonForm component in this new "views" component */}
+                <hr />
+                <h6>
+                    This is the PersonForm component from the "components" folder.
+                    It is being used in this "views/Main.jsx" component.
+                </h6>
+                <PersonForm />
                 
             </fieldset>
         </div>

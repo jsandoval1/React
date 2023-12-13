@@ -1,6 +1,7 @@
 import React from 'react';
-import Main from './components/main';
 import './App.css';
+import { Route, Router, Routes } from 'react-router-dom';
+import MainView from './views/MainView';
 
 // In order for our frontend to access our backend and make requests, we need to use CORS.
 // CORS stands for Cross-Origin Resource Sharing.
@@ -21,7 +22,10 @@ function App() {
   return (
     <div className="App">
       <h1> FullStack Xtra Practice </h1>
-      <Main />
+        <Routes>
+          <Route path="/" element={<MainView />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
     </div>
   );
 }
