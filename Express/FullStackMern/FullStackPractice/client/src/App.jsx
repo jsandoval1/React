@@ -14,6 +14,9 @@ import './App.css';
 // app.use(cors());
 // Now, our frontend will be able to access our backend.
 
+// * When thats done, check (FullStackPractice/server/server.js) to validate that it is using CORS. 
+// Run both servers (backend and frontend) and check the browser console to see if the request is successful.
+
 function App() {
   return (
     <div className="App">
