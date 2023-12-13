@@ -14,3 +14,11 @@ module.exports.createPerson = (request, response) => {
         .then(person => response.json(person))
         .catch(err => response.json(err));
 }
+
+//  The method below is new from me to view all people
+module.exports.getAllPeople = (request, response) => {
+    Person.find({})
+        .then(person => response.json(person))
+        .catch(err => response.json(err))
+}
+
