@@ -7,7 +7,7 @@ import './App.css';
 // By default, browsers block requests from different origins.
 // An origin is the combination of protocol (http or https), domain (example.com), and port (8000, 3000, etc).
 
-// In the terminal, run the following command:
+// In the terminal, run the following command: (This is done in the backend/ server folder)
 // npm install cors
 // Then, in server.js, add the following code:
 // const cors = require("cors");
