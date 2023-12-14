@@ -22,8 +22,14 @@ function App() {
   return (
     <div className="App">
       <h1> FullStack Xtra Practice </h1>
+      <h6>
+        Here we are working with rendering components inside views and using axios to make requests to the backend. "Main.jsx" is the view , 
+        it contains a brief check to see if the request is successful. "PersonForm.jsx" is the component that is being used in the view.
+      </h6>
         <Routes>
-          <Route path="/" element={<MainView />} />
+          {/* This is the default route and it will render the MainView view, which contains the PersonForm component. */}
+          <Route path="/" element={<MainView />} /> 
+          {/* This is the route for anu other path. It will render a 404 Not Found page. */}
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
     </div>

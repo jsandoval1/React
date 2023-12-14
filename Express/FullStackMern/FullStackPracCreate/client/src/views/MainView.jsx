@@ -14,7 +14,7 @@ export default () => {
     return (
         <div>
             <fieldset>
-                <legend>Main.jsx component( views )</legend>
+                <legend>Main.jsx View( views )</legend>
                 <h2>Message from the backend: {message}</h2>
 
                 {/* Explaining Error */}
