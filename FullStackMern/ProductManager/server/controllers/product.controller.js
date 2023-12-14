@@ -6,14 +6,20 @@ const Product = require('../models/product.model');
 
 // Create a new product
 module.exports.createProduct = (request, response) => {
-    const { name, price, description } = request.body;
+    const { name, price, description } = request.body; // Destructuring the request.body object, must be sent as raw JSON, not 
     Product.create({
         name,
         price,
         description
     })
-        .then(product => response.json(product))
-        .catch(err => response.json(err));
+        .then(product => {
+            console.log("\n Product created: ", product);
+            response.json(product);
+        })
+        .catch(err => {
+            console.log("\n Error creating product");
+            response.json(err);
+        });
 }
 
 // Get all products
