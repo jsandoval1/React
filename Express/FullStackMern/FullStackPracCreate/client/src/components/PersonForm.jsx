@@ -22,6 +22,10 @@ const PersonForm = (props) => {
         })
             .then(res => console.log(res))
             .catch(err => console.log(err))
+
+        // reset the form after submitting
+        setFirstName("");
+        setLastName("");
     }
 
     //onChange to update firstName and lastName
