@@ -29,4 +29,11 @@ module.exports.getAllProducts = (request, response) => {
         .catch(err => response.json(err))
 }
 
+// Get a single product
+module.exports.getSingleProduct = (request, response) => {
+    Product.findOne({ _id: request.params.id }) // request.params.id is the id passed in the URL
+        .then(product => response.json(product))
+        .catch(err => response.json(err))
+}
+
 
