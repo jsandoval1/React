@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 function ProductDetail() {
@@ -28,16 +29,20 @@ function ProductDetail() {
         <div className="productDetail">
             <fieldset>
                 <legend> ProductDetail.jsx View </legend>
-                <p> ProductDetail.jsx to display a single product. </p>
+                <h5 style={{ textDecoration: 'underline' }}> ProductDetail.jsx displays a single product passed in from the url. </h5>
                 {
                     loaded ?
                         <div>
-                            <p> Name: {product.name} </p>
-                            <p> Price: ${product.price} </p>
-                            <p> Description: {product.description} </p>
+                            <fieldset>
+                                <legend> Product Id from the URL: {product._id} </legend>
+                                <p> Name: {product.name} </p>
+                                <p> Price: ${product.price} </p>
+                                <p> Description: {product.description} </p>
+                            </fieldset>
                         </div> :
                         <p> Loading... </p>
                 }
+                <br /><Link to="/"> Go back to the main page</Link>
             </fieldset>
         </div>
     )

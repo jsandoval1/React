@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
     // We use an empty array as the default value because we are expecting an array of objects
-    const [products, setProducts] = useState([]); 
+    const [products, setProducts] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
     // useEffect to make axios call on component load
@@ -24,14 +25,17 @@ const ProductList = (props) => {
                 {loaded ? (
                     products.map((product, i) =>
                         <ul key={i}>
-                            <li> Product Name: <strong>{product.name}</strong> </li>
-                            <li> Product Price: $<strong>{product.price}</strong> </li>
+                            <li>
+                                {/* Added link to product details */}
+                                Product Name: <strong> <Link to={`/products/${product._id}`}>{product.name}</Link> </strong>
+                            </li> 
+                            <li> Product Price: <strong>${product.price}</strong> </li>
                             <li> Product Description: <strong>{product.description}</strong> </li>
                         </ul>
                     )
                 ) : (
                     // If loaded is false, aka the axios call has not been resolved, display this message
-                    <p> Making axios call to get all the products from the database... </p> 
+                    <p> Making axios call to get all the products from the database... </p>
                 )}
             </fieldset>
         </div>
