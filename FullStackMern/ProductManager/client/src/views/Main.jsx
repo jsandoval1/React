@@ -1,21 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import ProductForm from '../components/ProductForm'
 import ProductList from '../components/ProductList'
 
 const Main = () => {
+    // Set up state to load all products from the database + loaded
+    const [products, setProducts] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+    // useEffect + axios to make call
+    // Store the array of products returned in the "products" var
+    // Pass "products" as prop to ProductList.jsx
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/products')
+            .then(res => {
+                setProducts(res.data);
+                setLoaded(true);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+
     return (
         <div className="main">
             <fieldset>
                 <legend> Main.jsx View </legend>
-                <p> Below is the ProductForm.jsx(Component) to create a new products. </p>
                 <ProductForm />
-                <h6> (Continuing Main.jsx View) </h6>
-                <ProductList />
-                <h6> (Continuing Main.jsx View) </h6>
-                <p>
-                    You can see all the products in the database by going to
-                    <a href="http://localhost:8000/api/products"> http://localhost:8000/api/products </a> if the server is on.
-                </p>
+                {loaded ? <ProductList products={products} /> : <p>Making call to database to get all products...</p>}
             </fieldset>
         </div>
     )
