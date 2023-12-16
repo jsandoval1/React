@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const ProductForm = () => {
+
+const ProductForm = (props) => {
+    // Destructure props to get addProduct function
+    const { addProduct } = props
+
+    // Set up state for form inputs
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
 
+    // Create a new product object from state
     const onSubmitHandler = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8000/api/products', {
@@ -15,13 +21,14 @@ const ProductForm = () => {
         })
             .then(res => {
                 console.log(res)
-                // reset the fields after successful post request to the server
+                addProduct(res.data) // Passing response data to addProduct function to update state in Main.jsx
                 setName("")
                 setPrice("")
                 setDescription("")
             })
             .catch(err => console.log(err))
     }
+
 
     return (
         <fieldset>
