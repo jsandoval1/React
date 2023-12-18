@@ -36,4 +36,13 @@ module.exports.getSingleProduct = (request, response) => {
         .catch(err => response.json(err))
 }
 
+// Update a single product
+module.exports.updateProduct = (request, response) => {
+    Product.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
+        // request.params.id is the id passed in the URL
+        // request.body is the data to be updated ( sent as raw JSON in the request body )
+        .then(updatedProduct => response.json(updatedProduct))
+        .catch(err => response.json(err))
+}
+
 
