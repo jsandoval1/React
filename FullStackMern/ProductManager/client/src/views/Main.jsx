@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
 import ProductForm from '../components/ProductForm'
 import ProductList from '../components/ProductList'
+import { Helmet } from 'react-helmet'
 
 
 const Main = () => {
@@ -20,7 +20,8 @@ const Main = () => {
             .catch(err => console.error(err));
     }, []);
 
-    // Passing prop to create a new product
+    // Passing prop to create a new product, since we are using the component in the return statement and
+    // it receives props 
     const createProduct = product => {
         axios.post('http://localhost:8000/api/products', product)
             .then(res => {
@@ -36,12 +37,29 @@ const Main = () => {
 
     return (
         <div className="main">
+            {/* Helmet to set the title of the page */}
+            <Helmet>
+                <title> Main Page </title>
+            </Helmet>
+
+            {/* Conditional rendering to display the product information or a loading message */}
             <fieldset>
                 <legend> Main.jsx View </legend>
-                <ProductForm onSubmitProp={createProduct} initialName="" initialPrice="" initialDescription="" />
-                {loaded ? <ProductList products={products} removeFromDom={removeFromDom} />
-                    : <p>Making call to database to get all products...</p>}
+                {/* Passing prop to create a new product,initial values are empty strings. */}
+                <ProductForm
+                    onSubmitProp={createProduct}
+                    initialName=""
+                    initialPrice=""
+                    initialDescription=""
+                />
+                {/* Passing prop pf all products and also removeFromDom to share state with Main.jsx and ProductList.jsx */}
+                {loaded ?
+                    <ProductList
+                        products={products}
+                        removeFromDom={removeFromDom} /> :
+                    <p>Making call to database to get all products...</p>}
             </fieldset>
+
         </div>
     )
 }
