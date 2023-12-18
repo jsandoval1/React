@@ -29,10 +29,15 @@ function EditProduct() {
         <fieldset>
             <legend> EditProduct.jsx View </legend>
             <h1> Edit Product </h1>
+            <h6>
+                The id from the url is: {id}. This was obtained using useParams() from react-router-dom. We first used a "get" request to get the product from the server,
+                then we set the product state to the response data. We then used the product state to populate the form. And finally, we used a "patch" request to update
+                the product in the database.
+            </h6>
             {loaded &&
                 <form onSubmit={updateProduct}>
                     <p>
-                        <label>Title</label><br />
+                        <label>Name</label><br />
                         <input type="text" name="title" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
                     </p>
                     <p>
