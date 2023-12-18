@@ -51,4 +51,14 @@ module.exports.updateProduct = (request, response) => {
         .catch(err => response.json(err))
 }
 
+// Delete a single product
+module.exports.deleteProduct = (request, response) => {
+    Product.deleteOne({ _id: request.params.id })
+        .then(deleteConfirmation => {
+            console.log("\n Product deleted: ", deleteConfirmation); // deleteConfirmation is a JSON object with the deleted product's information
+            response.json(deleteConfirmation);
+        })
+        .catch(err => response.json(err))
+}
+
 
