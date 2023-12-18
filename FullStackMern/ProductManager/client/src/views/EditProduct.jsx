@@ -7,11 +7,11 @@ import axios from 'axios'
 // We are not passing in any props to this component. We are using the id from the url to make a call to the server to get the product to display.
 // We are not using any components in this view. We are using the useState and useEffect hooks to make a call to the server to get the product to display.
 // Everything is done in this view and we are not passing any props to any components.
-
 const EditProduct = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
     const [loaded, setLoaded] = useState(false)
+    const [message, setMessage] = useState('') // New state variable for the message
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
@@ -25,7 +25,10 @@ const EditProduct = () => {
     const updateProduct = (e) => {
         e.preventDefault()
         axios.patch(`http://localhost:8000/api/products/${id}`, product)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                setMessage('Product updated successfully!') // Set the message when the product is updated
+            })
             .catch(err => console.log(err))
     }
 
@@ -38,6 +41,7 @@ const EditProduct = () => {
                 then we set the product state to the response data. We then used the product state to populate the form. And finally, we used a "patch" request to update
                 the product in the database.
             </h6>
+            {message ? <p>{message}</p> : null} {/* Render the message if it exists */}
             {loaded ? (
                 <div>
                     <form onSubmit={updateProduct}>
