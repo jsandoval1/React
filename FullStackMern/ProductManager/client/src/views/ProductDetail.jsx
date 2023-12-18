@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { Helmet} from 'react-helmet'
 
 
 function ProductDetail() {
@@ -27,6 +28,11 @@ function ProductDetail() {
 
     return (
         <div className="productDetail">
+            <Helmet>
+                <title>
+                    {product.name ? 'Product Details: ' + product.name : 'Loading Product...'}
+                </title>
+            </Helmet>
             <fieldset>
                 <legend> ProductDetail.jsx View </legend>
                 <h5 style={{ textDecoration: 'underline' }}> ProductDetail.jsx displays a single product passed in from the url. </h5>
