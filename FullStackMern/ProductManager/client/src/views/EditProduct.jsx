@@ -34,7 +34,7 @@ function EditProduct() {
                 then we set the product state to the response data. We then used the product state to populate the form. And finally, we used a "patch" request to update
                 the product in the database.
             </h6>
-            {loaded &&
+            {loaded ? (
                 <form onSubmit={updateProduct}>
                     <p>
                         <label>Name</label><br />
@@ -50,7 +50,9 @@ function EditProduct() {
                     </p>
                     <input type="submit" value="Update" />
                 </form>
-            }
+            ) : (
+                <p> Making Axios call to get the product... </p>
+            )}
         </fieldset>
     )
 }
