@@ -2,6 +2,7 @@ import './App.css'
 import { Route, Routes, Link } from 'react-router-dom'
 import Main from './views/Main'
 import ProductDetail from './views/ProductDetail'
+import EditProduct from './views/EditProduct'
 
 
 function App() {
@@ -17,11 +18,13 @@ function App() {
       </p>
       <h6> "/" is the Main.jsx view which displays the ProductForm.jsx(Component) to create a new products. </h6>
       <h6> "/products/:id" is the ProductDetail.jsx view which displays a single product based on the id passed in the url. </h6>
+      <h6> "/products/:id/edit" is the EditProduct.jsx view which displays a form to edit a single product based on the id passed in the url. </h6>
       <h6> "*" is the 404: Not Found page. This is the default page if the route path does not match. </h6>
 
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products/:id/edit" element={<EditProduct />} /> {/* Not passing in any props */}
         <Route path="*" element={<h1>404: Not Found</h1>} />
 
       </Routes>
