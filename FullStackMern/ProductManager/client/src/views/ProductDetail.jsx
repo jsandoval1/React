@@ -14,9 +14,6 @@ function ProductDetail() {
     const [product, setProduct] = useState({}) // Server returns an object
     const [loaded, setLoaded] = useState(false)
 
-    // Using useEffect to make a call to the server to get the product to display
-    console.log("ProductDetail.jsx")
-
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {

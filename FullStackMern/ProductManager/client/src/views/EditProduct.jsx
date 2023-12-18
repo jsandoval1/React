@@ -1,70 +1,54 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import ProductForm from '../components/ProductForm'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-// * Note: 
-// We are not passing in any props to this component. We are using the id from the url to make a call to the server to get the product to display.
-// We are not using any components in this view. We are using the useState and useEffect hooks to make a call to the server to get the product to display.
-// Everything is done in this view and we are not passing any props to any components.
-const EditProduct = () => {
-    const { id } = useParams()
-    const [product, setProduct] = useState({})
-    const [loaded, setLoaded] = useState(false)
-    const [message, setMessage] = useState('') // New state variable for the message
+const EditProduct = (props) => {
+    // Params and navigate
+    const { id } = useParams();
+    const navigate = useNavigate();
 
+    // State
+    const [product, setProduct] = useState({});
+    const [loaded, setLoaded] = useState(false);
+
+    // useEffect to get the product information
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {
-                setProduct(res.data)
-                setLoaded(true)
+                setProduct(res.data);
+                setLoaded(true);
             })
-            .catch(err => console.log(err))
-    }, [id])
+            .catch(err => console.error(err));
+    }, []);
 
-    const updateProduct = (e) => {
-        e.preventDefault()
+    // Update the product passed in as an argument
+    const updateProduct = product => {
         axios.patch(`http://localhost:8000/api/products/${id}`, product)
-            .then(res => {
-                console.log(res)
-                setMessage('Product updated successfully!') // Set the message when the product is updated
-            })
-            .catch(err => console.log(err))
+        .then(res => {
+            console.log(res);
+            navigate(`/products/${id}`); // Navigate to the details page
+        })
+        .catch(err => console.error(err));
     }
 
     return (
-        <fieldset>
-            <legend> EditProduct.jsx View </legend>
-            <h1> Edit Product </h1>
-            <h6>
-                The id from the url is: {id}. This was obtained using useParams() from react-router-dom. We first used a "get" request to get the product from the server,
-                then we set the product state to the response data. We then used the product state to populate the form. And finally, we used a "patch" request to update
-                the product in the database.
-            </h6>
-            {message ? <p>{message}</p> : null} {/* Render the message if it exists */}
-            {loaded ? (
-                <div>
-                    <form onSubmit={updateProduct}>
-                        <p>
-                            <label>Name</label><br />
-                            <input type="text" name="title" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
-                        </p>
-                        <p>
-                            <label>Price</label><br />
-                            <input type="number" name="price" value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
-                        </p>
-                        <p>
-                            <label>Description</label><br />
-                            <input type="text" name="description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-                        </p>
-                        <input type="submit" value="Update" />
-                    </form>
-                    <Link to="/"> Home </Link> || <Link to={`/products/${product._id}`}> Product Detail </Link>
-                </div>
-            ) : (
-                <p> Making Axios call to get the product... </p>
-            )}
-        </fieldset>
+        <div className="editProduct">
+            <fieldset>
+                <legend> EditProduct.jsx View </legend>
+                {loaded ? (
+                    <ProductForm
+                        onSubmitProp={updateProduct}
+                        initialName={product.name}
+                        initialPrice={product.price}
+                        initialDescription={product.description}
+                    />
+                ) : (
+                    <p> Retrieving product information.. </p>
+                )}
+            </fieldset>
+        </div>
     )
 }
 
