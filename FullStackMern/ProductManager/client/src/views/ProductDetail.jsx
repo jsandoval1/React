@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 
 function ProductDetail() {
@@ -14,6 +14,7 @@ function ProductDetail() {
     const [product, setProduct] = useState({}) // Server returns an object
     const [loaded, setLoaded] = useState(false)
 
+    // useEffect to get the product information
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {
@@ -25,11 +26,14 @@ function ProductDetail() {
 
     return (
         <div className="productDetail">
+            {/* Helmet to set the title of the page */}
             <Helmet>
                 <title>
                     {product.name ? 'Product Details: ' + product.name : 'Loading Product...'}
                 </title>
             </Helmet>
+
+            {/* Conditional rendering to display the product information or a loading message */}
             <fieldset>
                 <legend> ProductDetail.jsx View </legend>
                 <h5 style={{ textDecoration: 'underline' }}> ProductDetail.jsx displays a single product passed in from the url. </h5>
@@ -42,12 +46,14 @@ function ProductDetail() {
                                 <p> Price: ${product.price} </p>
                                 <p> Description: {product.description} </p>
                                 <Link to={`/products/${product._id}/edit`}> Edit </Link>
+                                <br /> or <br />
+                                <Link to="/"> Go back to the main page</Link>
                             </fieldset>
                         </div> :
                         <p> Loading... </p>
                 }
-                <br /><Link to="/"> Go back to the main page</Link>
             </fieldset>
+            
         </div>
     )
 }
