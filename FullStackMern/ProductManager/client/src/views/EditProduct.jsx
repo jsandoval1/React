@@ -3,8 +3,12 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
+// * Note: 
+// We are not passing in any props to this component. We are using the id from the url to make a call to the server to get the product to display.
+// We are not using any components in this view. We are using the useState and useEffect hooks to make a call to the server to get the product to display.
+// Everything is done in this view and we are not passing any props to any components.
 
-function EditProduct() {
+const EditProduct = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
     const [loaded, setLoaded] = useState(false)
