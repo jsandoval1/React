@@ -25,12 +25,18 @@ const Main = () => {
         setProducts([...products, newProduct]);
     }
 
+    // Passing prop removeFromDom to share state with Main.jsx and ProductList.jsx
+    const removeFromDom = productId => {
+        setProducts(products.filter(product => product._id !== productId));
+    }
+
     return (
         <div className="main">
             <fieldset>
                 <legend> Main.jsx View </legend>
                 <ProductForm addProduct={addProduct} />
-                {loaded ? <ProductList products={products} /> : <p>Making call to database to get all products...</p>}
+                {loaded ? <ProductList products={products} removeFromDom={removeFromDom} />
+                    : <p>Making call to database to get all products...</p>}
             </fieldset>
         </div>
     )
