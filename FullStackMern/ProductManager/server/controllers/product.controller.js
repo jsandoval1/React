@@ -32,7 +32,10 @@ module.exports.getAllProducts = (request, response) => {
 // Get a single product
 module.exports.getSingleProduct = (request, response) => {
     Product.findOne({ _id: request.params.id }) // request.params.id is the id passed in the URL
-        .then(product => response.json(product))
+        .then(product => {
+            console.log("\n Single product: ", product);
+            response.json(product);
+        })
         .catch(err => response.json(err))
 }
 
@@ -41,7 +44,10 @@ module.exports.updateProduct = (request, response) => {
     Product.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
         // request.params.id is the id passed in the URL
         // request.body is the data to be updated ( sent as raw JSON in the request body )
-        .then(updatedProduct => response.json(updatedProduct))
+        .then(updatedProduct => {
+            console.log("\n Updated product: ", updatedProduct);
+            response.json(updatedProduct);
+        })
         .catch(err => response.json(err))
 }
 
