@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 
 
 const ProductForm = (props) => {
-    // State for the form inputs start with the initial values passed in as props
+    // State for the form inputs start with the initial values passed in as props from any different view
     const { initialName, initialPrice, initialDescription, onSubmitProp } = props;
 
     // State for the form inputs, using the initial values passed in as props
+    // these can be empty strings or the product information if we are using the ProductForm component in the EditProduct.jsx view
     const [name, setName] = useState(initialName);
     const [price, setPrice] = useState(initialPrice);
     const [description, setDescription] = useState(initialDescription);
