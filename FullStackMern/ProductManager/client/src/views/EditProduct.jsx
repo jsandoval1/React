@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -35,21 +35,24 @@ function EditProduct() {
                 the product in the database.
             </h6>
             {loaded ? (
-                <form onSubmit={updateProduct}>
-                    <p>
-                        <label>Name</label><br />
-                        <input type="text" name="title" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
-                    </p>
-                    <p>
-                        <label>Price</label><br />
-                        <input type="number" name="price" value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
-                    </p>
-                    <p>
-                        <label>Description</label><br />
-                        <input type="text" name="description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-                    </p>
-                    <input type="submit" value="Update" />
-                </form>
+                <div>
+                    <form onSubmit={updateProduct}>
+                        <p>
+                            <label>Name</label><br />
+                            <input type="text" name="title" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
+                        </p>
+                        <p>
+                            <label>Price</label><br />
+                            <input type="number" name="price" value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
+                        </p>
+                        <p>
+                            <label>Description</label><br />
+                            <input type="text" name="description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
+                        </p>
+                        <input type="submit" value="Update" />
+                    </form>
+                    <Link to="/"> Home </Link> || <Link to={`/products/${product._id}`}> Product Detail </Link>
+                </div>
             ) : (
                 <p> Making Axios call to get the product... </p>
             )}
