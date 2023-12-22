@@ -1,0 +1,21 @@
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    background-color: #f1f1f1;
+}
+
+.nav-bar.open {
+    transform: translateX(0);
+}
+
+button {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
