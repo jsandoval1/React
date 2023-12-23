@@ -1,21 +1,31 @@
-.nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100%;
-    overflow: auto;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(-100%);
-    background-color: #f1f1f1;
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px; 
+    background-color: plum;
+    margin: 0;
+    border-bottom: 2px solid black;
 }
 
-.nav-bar.open {
-    transform: translateX(0);
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    gap: 10px;
 }
 
-button {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Make all NavLinks from react-router-dom look like this */
+.nav-link {
+    text-decoration: none;
+    color: orange;
+    padding: 10px;
+    background-color: #ccc; /* Add gray background to all links */
+}
+
+/* Make it so that the navlink item that is currently active is highlighted */
+.active {
+    color: red; /* Make the active link red */
+    font-weight: bold; /* Make the active link bold */
+    background-color: #0000ff; /* Change background color to blue for the active link */
 }
