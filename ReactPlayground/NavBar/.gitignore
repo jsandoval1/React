@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # ignore images folder
-images
+#! images
+# this blocked the images folder from being uploaded to github and the images were not showing up on the website
