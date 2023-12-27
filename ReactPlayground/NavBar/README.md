@@ -38,4 +38,4 @@ Finally, start the development server:
 npm run dev
 ```
 
-Visit http://localhost:5173.com in your browser to see the application.
+Visit http://localhost:5173 in your browser to see the application.
