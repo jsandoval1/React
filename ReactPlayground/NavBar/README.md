@@ -28,12 +28,14 @@ Next, navigate to the navbar directory:
 cd navbar
 ```
 
-After that, install the dependencies:
+After that, install the dependencies which contains the React Router library:
 ```sh
-npm install
+npm install react-router-dom
 ```
 
 Finally, start the development server:
 ```sh
 npm run dev
 ```
+
+Visit http://localhost:5173.com in your browser to see the application.
