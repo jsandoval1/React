@@ -15,7 +15,43 @@ First, clone the repository to your local machine:
 
 ```sh
 git clone https://github.com/jsandoval1/React.git
+```
+
+
+```markdown
+Then, navigate to the React directory:
+```
+
+
+```sh
 cd React
+```
+
+```markdown
+Next, navigate to the navbar directory:
+```
+
+```sh
 cd navbar
+```
+
+
+```markdown
+After that, install the dependencies:
+```
+
+
+```sh
 npm install
+```
+
+
+
+```markdown
+Finally, start the development server:
+```
+
+
+```sh
 npm run dev
+```
