@@ -14,4 +14,8 @@ This project is a simple React application that uses Vite for building and devel
 First, clone the repository to your local machine:
 
 ```sh
-git clone <repository-url>
+git clone https://github.com/jsandoval1/React.git
+cd React
+cd navbar
+npm install
+npm run dev
