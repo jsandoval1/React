@@ -13,7 +13,9 @@ module.exports.createProduct = (request, response) => {
         })
         .catch(err => {
             console.log("\n Error creating product");
-            response.json(err);
+            response.status(400).json(err);
+            // Send a 400 status code to the client if an error occurred 
+            // and include the error message in the response
         });
 }
 
@@ -35,15 +37,20 @@ module.exports.getSingleProduct = (request, response) => {
 }
 
 // Update a single product
+// request.params.id is the id passed in the URL
+// request.body is the data to be updated ( sent as raw JSON in the request body )
 module.exports.updateProduct = (request, response) => {
     Product.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
-        // request.params.id is the id passed in the URL
-        // request.body is the data to be updated ( sent as raw JSON in the request body )
         .then(updatedProduct => {
             console.log("\n Updated product: ", updatedProduct);
             response.json(updatedProduct);
         })
-        .catch(err => response.json(err))
+        .catch(err => {
+            console.log("\n Error updating product");
+            response.status(400).json(err);
+            // Send a 400 status code to the client if an error occurred
+            // and include the error message in the response
+        });
 }
 
 // Delete a single product
