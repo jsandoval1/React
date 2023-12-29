@@ -10,6 +10,10 @@ import ProductForm from '../components/ProductForm'
 // This is done by passing in the onSubmitProp function and the initial values as props
 // where we are using the ProductForm component in the return statement
 
+// TODO:
+// I would like come back to this and use localStorage 
+// to pass a success message to the details page upon successful update
+
 const EditProduct = (props) => {
     // Params and navigate
     const { id } = useParams();
