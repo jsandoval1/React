@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 
+// * Notes:
+// This is a reusable component that is used in the Main.jsx and EditProduct.jsx views
+// It receives the initial values, the onSubmitProp function, and the errors state as props from the corresponding view
 
 const ProductForm = (props) => {
     // State for the form inputs start with the initial values passed in as props from any different view
-    const { initialName, initialPrice, initialDescription, onSubmitProp } = props;
+    const { initialName, initialPrice, initialDescription, onSubmitProp, errors } = props;
 
-    // State for the form inputs, using the initial values passed in as props
-    // these can be empty strings or the product information if we are using the ProductForm component in the EditProduct.jsx view
+    // The initial values are passed in as props from the corresponding view, which is either the Main.jsx (create) or EditProduct.jsx (update) view
     const [name, setName] = useState(initialName);
     const [price, setPrice] = useState(initialPrice);
     const [description, setDescription] = useState(initialDescription);
 
-    // onSubmitHandler to pass the form inputs to the onSubmitProp function passed in as props
-    // and reset the form inputs to their initial values
+    // When the form is submitted, prevent the default behavior and invoke the callback function passed in as a prop from the corresponding view
+    // Dont need to reset the state because we are redirecting to a different view
     const onSubmitHandler = e => {
         e.preventDefault();
         onSubmitProp({ name, price, description });
-        setName("");
-        setPrice("");
-        setDescription("");
     }
 
     return (
@@ -26,6 +25,12 @@ const ProductForm = (props) => {
             <legend> ProductForm.jsx Component </legend>
             <h6> ProductForm.jsx is a reusable component that is used in the Main.jsx and EditProduct.jsx views. </h6>
             <form onSubmit={onSubmitHandler}>
+                {/* Mapping over the errors state which is passed in as a prop from the corresponding view */}
+                {errors.map((error, index) => (
+                    <p key={index} style={{ color: 'red' }}>
+                        {error.errors.name.message}
+                    </p>
+                ))}
                 <p>
                     <label>Name</label><br />
                     <input

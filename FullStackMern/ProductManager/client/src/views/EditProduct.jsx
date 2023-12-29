@@ -15,11 +15,15 @@ const EditProduct = (props) => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // State
+    // State to manage the:
+    // - product information
+    // - whether the product information has been retrieved
+    // - errors (passing in the errors state to the ProductForm component)
     const [product, setProduct] = useState({});
     const [loaded, setLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
 
-    // useEffect to get the product information
+    // GET request to retrieve the product information
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {
@@ -29,14 +33,18 @@ const EditProduct = (props) => {
             .catch(err => console.error(err));
     }, []);
 
-    // Update the product passed in as an argument
+    // PUT request to update the product information, using the product as the body of the request
     const updateProduct = product => {
+        console.log(product);
         axios.patch(`http://localhost:8000/api/products/${id}`, product)
             .then(res => {
                 console.log(res);
-                navigate(`/products/${id}`); // Navigate to the details page
+                navigate(`/products/${id}`); // Navigate to the details page when successful
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                setErrors(prevErrors => [...prevErrors, err.response.data]);
+                console.error(err);
+            });
     }
 
     return (
@@ -51,11 +59,14 @@ const EditProduct = (props) => {
                 <legend> EditProduct.jsx View </legend>
                 {loaded ? (
                     <ProductForm
-                    //* Pass in the onSubmitProp function and the initial values as props
-                        onSubmitProp={updateProduct} // onSubmitProp is the updateProduct function
-                        initialName={product.name} // initialName, initialPrice, and initialDescription are the product information
+                        // onSubmitProp is the updateProduct function
+                        onSubmitProp={updateProduct}
+                        // initialName, initialPrice, and initialDescription are the product information
+                        initialName={product.name}
                         initialPrice={product.price}
                         initialDescription={product.description}
+                        // Pass in the errors state
+                        errors={errors}
                     />
                 ) : (
                     <p> Retrieving product information.. </p>
