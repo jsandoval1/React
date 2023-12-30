@@ -42,14 +42,12 @@ module.exports.getSingleProduct = (request, response) => {
 module.exports.updateProduct = (request, response) => {
     Product.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
         .then(updatedProduct => {
-            console.log("\n Updated product: ", updatedProduct);
+            console.log('Updated product:', updatedProduct);
             response.json(updatedProduct);
         })
         .catch(err => {
-            console.log("\n Error updating product");
+            console.error('Error updating product:', err);
             response.status(400).json(err);
-            // Send a 400 status code to the client if an error occurred
-            // and include the error message in the response
         });
 }
 

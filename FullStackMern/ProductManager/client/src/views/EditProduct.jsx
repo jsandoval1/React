@@ -37,17 +37,19 @@ const EditProduct = (props) => {
             .catch(err => console.error(err));
     }, []);
 
-    // PUT request to update the product information, using the product as the body of the request
     const updateProduct = product => {
-        console.log(product);
         axios.patch(`http://localhost:8000/api/products/${id}`, product)
             .then(res => {
-                console.log(res);
-                navigate(`/products/${id}`); // Navigate to the details page when successful
+                navigate(`/products/${id}`);
             })
             .catch(err => {
-                setErrors(prevErrors => [...prevErrors, err.response.data]);
-                console.error(err);
+                // Store the err response in a variable, then loop through the object to push the error messages to an array, and finally set the errors state
+                const errorResponse = err.response.data.errors;
+                const errorArr = [];
+                for (const key of Object.keys(errorResponse)) {
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
             });
     }
 

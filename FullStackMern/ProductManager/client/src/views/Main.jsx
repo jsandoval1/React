@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ProductForm from '../components/ProductForm'
 import ProductList from '../components/ProductList'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 
 
 const Main = () => {
@@ -38,9 +38,9 @@ const Main = () => {
     return (
         <div className="main">
             {/* Helmet to set the title of the page */}
-            <Helmet>
+            {/* <Helmet>
                 <title> Main Page </title>
-            </Helmet>
+            </Helmet> */}
 
             {/* Conditional rendering to display the product information or a loading message */}
             <fieldset>

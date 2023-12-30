@@ -13,7 +13,6 @@ const ProductForm = (props) => {
     const [price, setPrice] = useState(initialPrice);
     const [description, setDescription] = useState(initialDescription);
 
-
     // When the form is submitted, prevent the default behavior and invoke the callback function passed in as a prop from the corresponding view
     // Dont need to reset the state because we are redirecting to a different view
     const onSubmitHandler = e => {
@@ -27,9 +26,9 @@ const ProductForm = (props) => {
             <h6> ProductForm.jsx is a reusable component that is used in the Main.jsx and EditProduct.jsx views. </h6>
             <form onSubmit={onSubmitHandler}>
                 {/* Mapping over the errors state which is passed in as a prop from the corresponding view */}
-                {(errors || []).map((error, index) => (
+                {errors.map((err, index) => (
                     <p key={index} style={{ color: 'red' }}>
-                        {error.errors.name.message}
+                        {err}
                     </p>
                 ))}
                 <p>
