@@ -26,6 +26,9 @@ Navigate to the server directory and install the server dependencies
 ```sh
 cd React/FullStack/ProductManager/server
 ```
+```dotnetcli
+npm install nodemon express mongoose dotenv cors node_modules
+```
 
 Navigate to the client directory and install the client dependencies
 ```sh 
