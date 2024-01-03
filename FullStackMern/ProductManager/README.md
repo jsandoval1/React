@@ -16,31 +16,26 @@ I built this project to practice building a full-stack application with React an
 
 To install the project, follow these steps:
 
-1. Clone the repository to your local machine.
-<!-- sh block -->
+Clone the repository:
+
 ```sh
-# Clone the repository
 git clone https://github.com/jsandoval1/React.git
+```
 
-# Navigate to the server directory and install the server dependencies
-cd React/server
-npm install
+Navigate to the server directory and install the server dependencies
+```sh
+cd React/FullStack/ProductManager/server
+```
 
-# Navigate to the client directory and install the client dependencies
-cd ../client
-npm install
-
-2. Navigate to the `server` directory and run `npm install` to install the server dependencies.
-3. Navigate to the `client` directory and run `npm install` to install the client dependencies.
+Navigate to the client directory and install the client dependencies
+```sh 
+cd React/FullStack/ProductManager/client
 ```
 
 ## Running the Project
-
 To run the project, follow these steps:
-
 1. In the `server` directory, run `npm start` to start the server.
 2. In the `client` directory, run `npm start` to start the React application.
 
 ## Contributing
-
 If you would like to contribute to this project, please fork the repository, make your changes, and open a pull request. All contributions are welcome.
