@@ -5,7 +5,7 @@ This project is a full-stack application with a React frontend and a Node.js bac
 ## Why did I build this?
 I built this project to practice building a full-stack application with React and Node.js, as well as to gain experience using MongoDB as a database. My goal was to create a simple application that would allow me to perform CRUD operations on products. Additionally, I wanted to enhance my skills in using React Router to create a seamless single-page application. To manage state in the application, I utilized React Hooks. I also aimed to improve my understanding of backend validations and practice using props to pass data between components and create reusable components.
 
-## Software and Libraries Used
+### Software and Libraries Used
 | Technology | Description |
 |------------|-------------|
 | MongoDB | Used for the database, ideal for this project because of how it stores data in JSON-like documents |
@@ -26,19 +26,19 @@ Navigate to the server directory and install the server dependencies
 ```sh
 cd React/FullStack/ProductManager/server
 ```
-```dotnetcli
-npm install nodemon express mongoose dotenv cors node_modules
+```sh
+npm install nodemon express mongoose dotenv cors
 ```
 
 Navigate to the client directory and install the client dependencies
 ```sh 
 cd React/FullStack/ProductManager/client
 ```
+```sh
+npm install react-router-dom react-helmet axios
+```
 
-## Running the Project
+#### Great, now that you have the project installed, let's run it!
 To run the project, follow these steps:
-1. In the `server` directory, run `npm start` to start the server.
-2. In the `client` directory, run `npm start` to start the React application.
-
-## Contributing
-If you would like to contribute to this project, please fork the repository, make your changes, and open a pull request. All contributions are welcome.
+1. In the `server` directory, run `nodemon server.js` to start the Node.js server.
+2. In the `client` directory, run `npm run dev` to start the React development server.
