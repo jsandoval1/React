@@ -21,13 +21,13 @@ function Navbar() {
     return (
         <>
             {/* Navbar container */}
-            < div className="bg-gray-400 p-4" >
+            < div className="p-4 bg-gray-400" >
                 {/* Navbar content to be centered on medium and large screens */}
-                <div className="md:mx-auto md:w-3/4 lg:w-2/3 flex justify-between items-center">
+                <div className="flex items-center justify-between md:mx-auto md:w-3/4 lg:w-2/3">
 
                     {/* Desktop menu */}
                     <h1 className="text-2xl font-bold">Navbar</h1>
-                    <ul className="space-x-4 hidden md:flex">
+                    <ul className="hidden space-x-4 md:flex">
                         <NavLink to="/" className={({ isActive }) => isActive ? "text-red-500" : "text-black"} > Home </NavLink>
                         <NavLink to="/about" className={({ isActive }) => isActive ? "text-red-500" : "text-black"}> About </NavLink>
                         <NavLink to="/contact" className={({ isActive }) => isActive ? "text-red-500" : "text-black"} > Contact </NavLink>
@@ -35,7 +35,7 @@ function Navbar() {
 
                     {/* Mobile menu */}
                     {/* Icon */}
-                    <div className='md:hidden z-10' onClick={toggleMenu}> {/* Icon to be shown on small screens */}
+                    <div className='z-10 md:hidden' onClick={toggleMenu}> {/* Icon to be shown on small screens */}
                         {isOpen ? <FaTimes size={32} color='red' onClick={toggleMenu} /> : <GiHamburgerMenu onClick={toggleMenu} />}
                     </div>
                     {/* Links */}
