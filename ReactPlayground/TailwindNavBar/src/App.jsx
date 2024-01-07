@@ -1,10 +1,10 @@
 import React from 'react';
-import { FaReact } from 'react-icons/fa';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
+import Navbar from './components/Navbar';
 
 
 // Notes:
@@ -13,10 +13,7 @@ import Contact from './views/Contact';
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-        <FaReact />
-      </h1>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
