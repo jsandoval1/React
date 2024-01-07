@@ -1,5 +1,3 @@
-/* Giving the body a dark gray background */
-body {
-  background-color: #333;
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
