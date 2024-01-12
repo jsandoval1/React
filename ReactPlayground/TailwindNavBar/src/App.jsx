@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App bg-gray-800 w-full h-screen">
+    <div className="w-full h-screen bg-gray-800 App">
       <Navbar />
       <div className="md:mx-auto md:w-3/4 lg:w-2/3">
         <Routes>
