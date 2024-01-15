@@ -1,27 +1,27 @@
-// Importing the express library, cors, and .env file variables.
-// We also invoke express and store the result in a variable called app.
-// We can now use app to run methods. As well as use .env variables by invoking process.env.VARIABLE_NAME
+// Declare our dependencies
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
-const app = express();
+const morgan = require('morgan');
 require('dotenv').config();
 
-// Setting up the port from the .env file
-const port = process.env.PORT;
+// This is creating our express app by running the express function
+const app = express();
 
-// This will fire our mongoose.connect statement to initialize our database connection
+// Connect to our database with mongoose
 require('./config/mongoose.config');
 
-// Allowing our app to use cors and json and x-www-form-urlencoded
-app.use(cors());
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true })); 
+// This is where we use our middleware, in the order that we want them to run
+app.use(helmet()); // Security middleware should come first
+app.use(cors()); // Then CORS
+app.use(express.json()); // Built-in middleware for parsing JSON
+app.use(express.urlencoded({ extended: true })); // Built-in middleware for parsing URL-encoded bodies
+app.use(morgan('common')); // Logger should come after the body parsing middleware
 
-// This is where we import the product routes function from our product.routes.js file
+// This is where we import the message routes function from our message.routes.js file
 const AllMyMessageRoutes = require('./routes/message.routes');
 AllMyMessageRoutes(app);
 
-// This is running our server on port 8000
+// This is running our server on port 8000, being accessed from .env file
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Listening on port: ${port}👂`));
-
-// Run with "nodemon server.js" and test with Thunder Client in VSCode or Postman.
