@@ -1,8 +1,10 @@
 # ChatApp Practice Project
 
 <!--  todo: FRONTEND NOTES -->
-## Front End Notes: 
-Dependencies:
+## Front End: 
+### Front End Notes: 
+
+### Dependencies:
 - react-router-dom (for routing)
 - react-helmet (for meta tags)
 - axios (for http requests)
@@ -11,19 +13,21 @@ Dependencies:
 
 
 ### Front End Things Learned:
-- Can store the base URL for axios calls an axios instance. This is useful for when you have multiple axios calls to the same server
+- (1/14/24) Can store the base URL for axios calls an axios instance. This is useful for when you have multiple axios calls to the same server
 
 
 <!-- todo: SERVER NOTES -->
-## Server Notes:
-Dependencies:
+## Server:
+### Server Notes
+- (1/14/24) Added helmet and morgan for security and logging, never used them before
+- (1/14/24) Really focused on keeping server.js clean and reordered the code to make it more readable
+
+### Dependencies:
 - nodemon (for easy server restarts)
 - express (framework for node.js)
 - mongoose (for mongodb)
 - dotenv (for environment variables)
 - cors (for cross origin resource sharing)
-
-Might install: 
 - morgan (for logging)
 - helmet (for security)
 
