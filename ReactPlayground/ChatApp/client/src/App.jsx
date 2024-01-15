@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './config/axiosConfig';
 import './App.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/messages')
+    axios.get('api/messages')
       .then(response => {
         setMessages(response.data);
       })
