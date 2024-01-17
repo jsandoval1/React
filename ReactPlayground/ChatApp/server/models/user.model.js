@@ -19,7 +19,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
         minlength: [8, "Password must be at least 8 characters long"],
-        maxlength: [20, "Password must be less than 20 characters long"]
+        // * Removed maxlength because bcrypt hashes the password and makes it longer than 20 characters
+        // maxlength: [20, "Password must be less than 20 characters long"]
     },
     profilePictrure: {
         type: String,
