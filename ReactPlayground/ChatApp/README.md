@@ -1,3 +1,6 @@
+<!-- *Personal Notes: -->
+<!-- (1/14/24) Left on the video: 20:24, getting  alittle lost on the way he is setting up routes for register user -->
+
 # ChatApp Practice Project
 
 <!--  todo: FRONTEND NOTES -->
@@ -22,6 +25,7 @@
 - (1/14/24) Added helmet and morgan for security and logging, never used them before
 - (1/14/24) Really focused on keeping server.js clean and reordered the code to make it more readable
 
+
 ### Dependencies:
 - nodemon (for easy server restarts)
 - express (framework for node.js)
@@ -30,6 +34,7 @@
 - cors (for cross origin resource sharing)
 - morgan (for logging)
 - helmet (for security)
+- bcryptjs (for password hashing)
 
 ### Server Challenges:
 
