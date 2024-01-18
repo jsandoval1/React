@@ -1,6 +1,8 @@
 <!-- *Personal Notes: -->
 <!-- (1/14/24) Left on the video: 20:24, getting  alittle lost on the way he is setting up routes for register user -->
 
+<!-- (1/18/24) Got a few minutes to work on the project today, got server side login and register working for "User Model" -->
+
 # ChatApp Practice Project
 
 <!--  todo: FRONTEND NOTES -->
