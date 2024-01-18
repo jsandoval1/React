@@ -18,9 +18,11 @@ app.use(express.json()); // Built-in middleware for parsing JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for parsing URL-encoded bodies
 app.use(morgan('common')); // Logger should come after the body parsing middleware
 
-// This is where we import the message routes function from our message.routes.js file
-const AllMyUserRoutes = require('./routes/userAuth.routes');
-AllMyUserRoutes(app);
+// This is where we use our routes
+const AllMyUserAuthRoutes = require('./routes/userAuth.routes');
+const AllMyUserActionRoutes = require('./routes/userActions.routes');
+AllMyUserAuthRoutes(app);
+AllMyUserActionRoutes(app);
 
 // This is running our server on port 8000, being accessed from .env file
 const port = process.env.PORT;
