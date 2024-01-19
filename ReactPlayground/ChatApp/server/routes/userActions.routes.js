@@ -7,4 +7,5 @@ module.exports = function(app) {
     app.delete("/api/users/:id", userActions.deleteUser);
     app.get("/api/users/:id", userActions.getUser);
     app.put("/api/users/:id/follow", userActions.followUser);
+    app.put("/api/users/:id/unfollow", userActions.unfollowUser);
 }
