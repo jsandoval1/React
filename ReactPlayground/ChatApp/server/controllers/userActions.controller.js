@@ -24,3 +24,19 @@ module.exports.updateUser = async (req, res) => {
         res.status(401).json({ message: "You can only update your own profile" });
     }
 };
+
+// Delete a user
+module.exports.deleteUser = async (req, res) => {
+    // Check if the user is deleting their own profile or if the user is an admin
+    if (req.body.userId === req.params.id || req.user.isAdmin) {
+        // Delete the user
+        try {
+            await User.findByIdAndDelete(req.params.id);
+            res.status(200).json({ message: "User deleted successfully" });
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    } else {
+        res.status(401).json({ message: "You can only delete your own profile" });
+    }
+};
