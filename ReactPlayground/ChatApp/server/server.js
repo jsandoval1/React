@@ -22,9 +22,11 @@ app.use(morgan('common')); // Logger should come after the body parsing middlewa
 const AllMyUserAuthRoutes = require('./routes/userAuth.routes');
 const AllMyUserActionRoutes = require('./routes/userActions.routes');
 const AllMyConversationRoutes = require('./routes/conversation.routes');
+const AllMyMessageRoutes = require('./routes/message.routes');
 AllMyUserAuthRoutes(app);
 AllMyUserActionRoutes(app);
 AllMyConversationRoutes(app);
+AllMyMessageRoutes(app);
 
 // This is running our server on port 8000, being accessed from .env file
 const port = process.env.PORT;
