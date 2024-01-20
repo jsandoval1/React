@@ -7,13 +7,13 @@ function Navbar() {
     return (
         <div className="navbarContainer">
             <div className="navbarLeft">
-                <span> Sandoval </span>
+                <span className='logo'> Sandoval </span>
             </div>
 
             <div className="navbarCenter">
                 <div className="searchBar">
                     <FaSearch className="searchIcon" />
-                    <input type="text" placeholder="Search for something" />
+                    <input className='searchInput' type="text" placeholder="Search for something" />
                 </div>
             </div>
 
@@ -36,7 +36,7 @@ function Navbar() {
                         <span className="navbarIconBadge"> 1 </span>
                     </div>
                 </div>
-                {/* < img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="navbarImg" /> */}
+                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="navbarImg" />
             </div>
 
         </div>
