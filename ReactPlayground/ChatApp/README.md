@@ -3,7 +3,11 @@
 
 <!-- (1/18/24) Got a few minutes to work on the project today, got server side login and register working for "User Model" -->
 
-<!-- (1/19/24) Completed the userAuth and userAction routes for the user model. I am going to start working on the post model next. -->
+<!-- (1/19/24) Completed the userAuth and userAction routes for the user model. I am going to start working on the conversations and messages models next. -->
+
+<!-- (1/20/24) Completed the server side for now with messages and conversations. I am going to start working on the front end now. -->
+
+<!-- (1/20/24) Installed react icons to start buiulding out navbar that will display using sockets for notifications. -->
 
 # ChatApp Practice Project  
 
@@ -14,6 +18,7 @@
 - react-router-dom (for routing)
 - react-helmet (for meta tags)
 - axios (for http requests)
+- react-icons (for icons)
 
 ### Front End Challenges:
 - None yet.
