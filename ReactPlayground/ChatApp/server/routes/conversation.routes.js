@@ -4,5 +4,5 @@ const Conversation = require('../controllers/conversation.controller');
 
 module.exports = function(app) {
     app.post("/api/conversations", Conversation.createConversation);
-    // app.get("/api/conversations/:userId", Conversation.getConversation);
+    app.get("/api/conversations/:userId", Conversation.getConversations);
 }
