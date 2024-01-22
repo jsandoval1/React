@@ -18,12 +18,13 @@
 - (1/22/24) In React, when passing boolean props, you can use a shorthand. Instead of explicitly setting the prop to `true`, you can simply write the prop name. Here's an example:
 
 ```jsx
+// In both cases, the Rightbar component will 
+// receive a prop called Profile with a value of true.
 <Rightbar Profile />
-This is equivalent to:
+// This is equivalent to:
 <Rightbar Profile={true} />
-In both cases, the Rightbar component will 
-receive a prop called Profile with a value of true.
 ```
+... this is a nice shorthand that can help keep my code clean and readable.
 
 ### Dependencies:
 
