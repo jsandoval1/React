@@ -14,6 +14,19 @@
 # ChatApp Practice Project
 
 ## Front End Notes:
+- (1/14/24) Can store the base URL for axios calls an axios instance. This is useful for when you have multiple axios calls to the same server. Here's an example:
+
+```jsx
+// Create an axios instance
+const axiosInstance = axios.create({
+    baseURL: "http://localhost:8800/api/",
+});
+
+// Use the axios instance to make calls
+axiosInstance.get("/users").then((res) => {
+    console.log(res);
+});
+```
 
 - (1/22/24) In React, when passing boolean props, you can use a shorthand. Instead of explicitly setting the prop to `true`, you can simply write the prop name. Here's an example:
 
@@ -24,7 +37,6 @@
 // This is equivalent to:
 <Rightbar Profile={true} />
 ```
-... this is a nice shorthand that can help keep my code clean and readable.
 
 ### Dependencies:
 
@@ -33,13 +45,16 @@
 - axios (for http requests)
 - react-icons (for icons)
 
+### Front End Milestones:
+- (1/22/24) Built out the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon.
+
 ### Front End Challenges:
 
 - None yet.
 
 ### Front End Things Learned:
 
-- (1/14/24) Can store the base URL for axios calls an axios instance. This is useful for when you have multiple axios calls to the same server
+- None yet.
 
 ## Server Notes
 
@@ -69,7 +84,3 @@
 
 1. (1/19/2024) Learned how to connect multiple model routes to the server. I did this by creating a folder called routes and then creating a file for each model. Then I imported each model route into the server.js file and used app.use() to connect them to the server.
 2. (1/19/2024) I learned how to store an array of objects in a mongodb document. I did this by creating a new schema for the array of objects and then adding that schema to the user schema. I also learned how to add a new object to the array of objects. I did this by using the $push operator in the update method. I also learned how to remove an object from the array of objects. I did this by using the $pull operator in the update method.
-
-```
-
-```
