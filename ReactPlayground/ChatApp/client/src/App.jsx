@@ -3,13 +3,15 @@ import './App.css';
 
 import HomePage from './views/Home/HomePage';
 import Profile from './views/Profile/Profile';
+import Login from './views/Login/Login';
 
 function App() {
 
   return (
     <div>
       {/* <HomePage /> */}
-      <Profile />
+      {/* <Profile /> */}
+      <Login />
     </div>
   );
 }
