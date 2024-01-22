@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import HomePage from './views/HomePage';
-import Profile from './views/Profile';
+import HomePage from './views/Home/HomePage';
+import Profile from './views/Profile/Profile';
 
 function App() {
 
