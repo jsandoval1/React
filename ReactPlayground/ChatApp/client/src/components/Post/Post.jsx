@@ -4,16 +4,16 @@ import './Post.css'
 import { IoMdMore } from 'react-icons/io';
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 
-function Post() {
+function Post({ post }) {
     return (
         <div className="postContainer">
             <div className="postWrapper">
 
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" className="postProfileImg" />
-                        <span className="postUsername">Username</span>
-                        <span className="postDate">Date</span>
+                        <img src={post.profilePicture} alt="" className="postProfileImg" />
+                        <span className="postUsername"> {post.name} </span>
+                        <span className="postDate"> {post.date} </span>
                     </div>
                     <div className="postTopRight">
                         <IoMdMore />
@@ -22,7 +22,7 @@ function Post() {
 
                 <div className="postCenter">
                     <span className="postText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</span>
-                    <img src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" className="postImg" />
+                    <img src={post.postPicture} alt="" className="postImg" />
                 </div>
 
                 <div className="postBottom">
