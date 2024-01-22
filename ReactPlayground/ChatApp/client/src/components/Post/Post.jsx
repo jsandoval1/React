@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Post.css'
 
 import { IoMdMore } from 'react-icons/io';
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 
 function Post({ post }) {
+    const [like, setLike] = useState(post.like)
+    const [isLiked, setIsLiked] = useState(false)
+
+    const likeHandler = () => {
+        setLike(isLiked ? like - 1 : like + 1)
+        setIsLiked(!isLiked)
+    }
+
     return (
         <div className="postContainer">
             <div className="postWrapper">
@@ -27,12 +35,12 @@ function Post({ post }) {
 
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <AiFillLike className="likeIcon" />
-                        <AiFillHeart className="likeIcon" />
-                        <span className="postLikeCounter">32 people like it</span>
+                        <AiFillLike className="likeIcon" onClick={likeHandler} color='blue' />
+                        <AiFillHeart className="likeIcon" onClick={likeHandler} color='pink' />
+                        <span className="postLikeCounter"> {like} people like this </span>
                     </div>
                     <div className="postBottomRight">
-                        <span className="postCommentText">9 comments</span>
+                        <span className="postCommentText"> {post.comment} comments </span>
                     </div>
                 </div>
 
