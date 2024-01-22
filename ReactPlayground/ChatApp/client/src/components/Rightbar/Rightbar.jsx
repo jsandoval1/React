@@ -2,6 +2,26 @@ import React from 'react'
 import './Rightbar.css'
 
 import { FaBirthdayCake } from 'react-icons/fa';
+import Online from '../Online/Online';
+
+//! Dummy Data
+const Users = [
+    {
+        id: 1,
+        profilePicture: "https://via.placeholder.com/150",
+        username: "Melinda Rye",
+    },
+    {
+        id: 2,
+        profilePicture: "https://via.placeholder.com/150",
+        username: "Trevor Rye",
+    },
+    {
+        id: 3,
+        profilePicture: "https://via.placeholder.com/150",
+        username: "Megan Rye",
+    },
+]
 
 function Rightbar() {
     return (
@@ -19,34 +39,9 @@ function Rightbar() {
 
                 <h4 className="rightbarTitle">Online Friends</h4>
                 <ul className="rightbarFriendList">
-                    <li className="rightbarFriend">
-                        <div className="rightbarProfileImgContainer">
-                            <img className="rightbarProfileImg" src="https://via.placeholder.com/150" alt="Profile" />
-                            <span className="rightbarOnline"></span>
-                        </div>
-                        <span className="rightbarUsername">Melinda Rye</span>
-                    </li>
-                    <li className="rightbarFriend">
-                        <div className="rightbarProfileImgContainer">
-                            <img className="rightbarProfileImg" src="https://via.placeholder.com/150" alt="Profile" />
-                            <span className="rightbarOnline"></span>
-                        </div>
-                        <span className="rightbarUsername">Melinda Rye</span>
-                    </li>
-                    <li className="rightbarFriend">
-                        <div className="rightbarProfileImgContainer">
-                            <img className="rightbarProfileImg" src="https://via.placeholder.com/150" alt="Profile" />
-                            <span className="rightbarOnline"></span>
-                        </div>
-                        <span className="rightbarUsername">Melinda Rye</span>
-                    </li>
-                    <li className="rightbarFriend">
-                        <div className="rightbarProfileImgContainer">
-                            <img className="rightbarProfileImg" src="https://via.placeholder.com/150" alt="Profile" />
-                            <span className="rightbarOnline"></span>
-                        </div>
-                        <span className="rightbarUsername">Melinda Rye</span>
-                    </li>
+                    {Users.map((u) => (
+                        <Online key={u.id} user={u} />
+                    ))}
                 </ul>
 
             </div>
