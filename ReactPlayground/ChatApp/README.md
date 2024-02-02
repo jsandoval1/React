@@ -11,6 +11,8 @@
 
 <!-- (1/22/24) I have built out alot of the front end including the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon. -->
 
+<!-- (2/1/24) I had taken a break from this project to work on getting some other apps deployed and learning about AWS. I am back now and I am going to start working on the chat page. -->
+
 # ChatApp Practice Project
 
 ## Front End Notes:
@@ -47,6 +49,7 @@ axiosInstance.get("/users").then((res) => {
 
 ### Front End Milestones:
 - (1/22/24) Built out the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon.
+- (2/1/24) Added react-rotuer-dom for routing
 
 ### Front End Challenges:
 
