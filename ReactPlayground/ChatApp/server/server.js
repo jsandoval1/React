@@ -16,15 +16,18 @@ app.use(helmet()); // Security middleware should come first
 app.use(cors()); // Then CORS
 app.use(express.json()); // Built-in middleware for parsing JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for parsing URL-encoded bodies
-app.use(morgan('common')); // Logger should come after the body parsing middleware
+app.use(morgan('dev')); // Logger should come after the body parsing middleware
+
 
 // This is where we use our routes
 const AllMyUserAuthRoutes = require('./routes/userAuth.routes');
 const AllMyUserActionRoutes = require('./routes/userActions.routes');
+const AllMyPostRoutes = require('./routes/post.routes');
 const AllMyConversationRoutes = require('./routes/conversation.routes');
 const AllMyMessageRoutes = require('./routes/message.routes');
 AllMyUserAuthRoutes(app);
 AllMyUserActionRoutes(app);
+AllMyPostRoutes(app);
 AllMyConversationRoutes(app);
 AllMyMessageRoutes(app);
 
