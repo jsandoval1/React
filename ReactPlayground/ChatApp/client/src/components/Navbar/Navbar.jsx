@@ -2,12 +2,16 @@ import React from 'react'
 import { FaBell, FaRegComment, FaSearch, FaUser } from 'react-icons/fa'
 import './Navbar.css'
 
+import { Link } from 'react-router-dom'
+
 
 function Navbar() {
     return (
         <div className="navbarContainer">
             <div className="navbarLeft">
-                <span className='logo'> Sandoval </span>
+                <Link to = '/' style={{ textDecoration: 'none' }}>
+                    <span className='logo'> Sandoval </span>
+                </Link>
             </div>
 
             <div className="navbarCenter">
