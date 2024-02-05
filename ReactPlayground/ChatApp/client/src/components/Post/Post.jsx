@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../config/axiosConfig'
-import {format} from 'timeago.js'
+import { format } from 'timeago.js'
+import { Link } from 'react-router-dom'
 
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 import { IoMdMore } from 'react-icons/io';
@@ -15,9 +16,9 @@ function Post({ post }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await api.get(`/users/${post.userId}`);
+            const res = await api.get(`/users?userId=${post.userId}`);
             setUser(res.data);
-        }
+        };
         fetchUser();
     }, [post.userId]);
 
@@ -32,8 +33,12 @@ function Post({ post }) {
 
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img src={user.profilePicture || noAvatar}
-                        alt="" className="postProfileImg" />
+                        <Link to={`profile/${user.username}`} style={{ textDecoration: 'none' }}>
+                            <img
+                                src={user.profilePicture || noAvatar}
+                                alt=""
+                                className="postProfileImg" />
+                        </Link>
                         <span className="postUsername"> {user.username} </span>
                         <span className="postDate"> {format(post.createdAt)} </span>
                     </div>
