@@ -13,6 +13,8 @@
 
 <!-- (2/1/24) I had taken a break from this project to work on getting some other apps deployed and learning about AWS. I am back now and I am going to start working on the chat page. -->
 
+<!-- (2/5/24) I have just started working on combining the front end and back end. I am currently getting the feed page to display the posts from the server. -->
+
 # ChatApp Practice Project
 
 ## Front End Notes:
@@ -46,10 +48,12 @@ axiosInstance.get("/users").then((res) => {
 - react-helmet (for meta tags)
 - axios (for http requests)
 - react-icons (for icons)
+- timeago.js (for time ago)
 
 ### Front End Milestones:
 - (1/22/24) Built out the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon.
 - (2/1/24) Added react-rotuer-dom for routing
+- (2/5/24) Started working on connecting the front end to the back end. Currently getting the feed page to display the posts from the server.
 
 ### Front End Challenges:
 
@@ -57,7 +61,8 @@ axiosInstance.get("/users").then((res) => {
 
 ### Front End Things Learned:
 
-- None yet.
+- (2/5/24) Can store the base URL for servers calls in something called "proxy" . Not sure if this is better than using an axios instance yet.
+- (2/5/24) Learned of a new library called "timeago.js" that can be used to display the time ago from a date. This is useful for displaying the time a post was created. In the past I have tried making my own function to do this, but it was not as easy to implement as this library.
 
 ## Server Notes
 
