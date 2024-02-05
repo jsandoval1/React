@@ -1,20 +1,3 @@
-<!-- *Personal Notes: -->
-<!-- (1/14/24) Left on the video: 20:24, getting  alittle lost on the way he is setting up routes for register user-->
-
-<!-- (1/18/24) Got a few minutes to work on the project today, got server side login and register working for "User Model" -->
-
-<!-- (1/19/24) Completed the userAuth and userAction routes for the user model. I am going to start working on the conversations and messages models next. -->
-
-<!-- (1/20/24) Completed the server side for now with messages and conversations. I am going to start working on the front end now. -->
-
-<!-- (1/20/24) Installed react icons to start buiulding out navbar that will display using sockets for notifications. -->
-
-<!-- (1/22/24) I have built out alot of the front end including the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon. -->
-
-<!-- (2/1/24) I had taken a break from this project to work on getting some other apps deployed and learning about AWS. I am back now and I am going to start working on the chat page. -->
-
-<!-- (2/5/24) I have just started working on combining the front end and back end. I am currently getting the feed page to display the posts from the server. -->
-
 # ChatApp Practice Project
 
 ## Front End Notes:
@@ -57,7 +40,7 @@ axiosInstance.get("/users").then((res) => {
 
 ### Front End Challenges:
 
-- None yet.
+- (2/5/24) I have been connecting the back end to the front end and I am having trouble getting the posts to display on the feed page. However, I am trying to use as many reusable components as possible, so managing props is getting a little tricky. Along with which calls to make in the useEffect hook.
 
 ### Front End Things Learned:
 
