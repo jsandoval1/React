@@ -4,18 +4,20 @@ import Share from '../Share/Share'
 import Post from '../Post/Post'
 import api from '../../config/axiosConfig'
 
-function Feed() {
+function Feed({ username }) {
     const [post, setPost] = useState([]);
 
     // Fetch timeline posts from the server
     useEffect(() => {
         const fetchPost = async () => {
-            const res = await api.get("/posts/timeline/65a9fad689e655b361835880");
-            console.log(res.data);
-            setPost(res.data);
+            const res = username
+                ? await api.get("/posts/profile/" + username)
+                : await api.get("/posts/timeline/65a9fad689e655b361835880");
+                console.log(res.data);
+                setPost(res.data);
         }
         fetchPost();
-    }, []);
+    }, [username]);
 
     return (
         <div className="feedContainer">
