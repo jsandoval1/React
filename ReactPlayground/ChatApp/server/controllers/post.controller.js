@@ -49,7 +49,8 @@ module.exports.getTimelinePosts = async (req, res) => {
                 return Post.find({ userId: friendId });
             })
         );
-        res.status(200).json({ message: "Posts retrieved successfully", posts: userPosts.concat(...friendPosts) });
+        res.status(200).json(userPosts.concat(...friendPosts));
+        // res.status(200).json({ message: "Posts retrieved successfully", posts: userPosts.concat(...friendPosts) });
     } catch (err) {
         res.status(500).json(err);
     }
