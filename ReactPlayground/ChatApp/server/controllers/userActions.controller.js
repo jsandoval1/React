@@ -43,17 +43,14 @@ module.exports.deleteUser = async (req, res) => {
 
 // Get a user
 module.exports.getUser = async (req, res) => {
-    // Check if the user is getting their own profile or if the user is an admin
-    const userId = req.params.id;
+    const userId = req.query.userId;
     const username = req.query.username;
     try {
         const user = userId
             ? await User.findById(userId)
-            // Might be useful down the line for searching for user by username feature
             : await User.findOne({ username: username }); 
-        // Destructure the user object to remove the password
         const { password, ...info } = user._doc;
-        res.status(200).json({ message: "User retrieved successfully", user: info });
+        res.status(200).json(info);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -87,17 +84,12 @@ module.exports.followUser = async (req, res) => {
 
 // Unfollow a user
 module.exports.unfollowUser = async (req, res) => {
-    // Check if the user is unfollowing their own profile
     if (req.body.userId !== req.params.id) {
-        // Check if the user is already following the user they are trying to unfollow
         try {
             const user = await User.findById(req.params.id);
             const currentUser = await User.findById(req.body.userId);
-            // Check if the user is already following the user they are trying to unfollow
             if (user.followers.includes(req.body.userId)) {
-                // Update the user being unfollowed
                 await user.updateOne({ $pull: { followers: req.body.userId } });
-                // Update the user following
                 await currentUser.updateOne({ $pull: { following: req.params.id } });
                 res.status(200).json({ message: "User unfollowed successfully" });
             } else {
