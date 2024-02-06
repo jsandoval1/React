@@ -38,6 +38,8 @@ axiosInstance.get("/users").then((res) => {
 - (1/22/24) Built out the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon.
 - (2/1/24) Added react-rotuer-dom for routing
 - (2/5/24) Started working on connecting the front end to the back end. Currently getting the feed page to display the posts from the server.
+- (2/6/24) Got login and register working. This was done by using the context API to store the user data. We also used useReducer to manage the state of the user data. 
+- (2/6/24) There are a few things so far that I feel are cutting a few corners or just not good practice. One of these being the way **form validations are being handled**. Currently they are being managed by the front end, but I believe they should be managed by the back end. I already have some regex in place for the back end, but I am not using it yet.
 
 ### Front End Challenges:
 
