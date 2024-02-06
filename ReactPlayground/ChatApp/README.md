@@ -32,6 +32,7 @@ axiosInstance.get("/users").then((res) => {
 - axios (for http requests)
 - react-icons (for icons)
 - timeago.js (for time ago)
+- react-spinners (for loading spinners)
 
 ### Front End Milestones:
 - (1/22/24) Built out the Home Page, Login Page, Register Page, and the profile page. I will connect this front end to the backend soon.
@@ -46,6 +47,7 @@ axiosInstance.get("/users").then((res) => {
 
 - (2/5/24) Can store the base URL for servers calls in something called "proxy" . Not sure if this is better than using an axios instance yet.
 - (2/5/24) Learned of a new library called "timeago.js" that can be used to display the time ago from a date. This is useful for displaying the time a post was created. In the past I have tried making my own function to do this, but it was not as easy to implement as this library.
+- Found a new library called "react-spinners" that can be used to display loading spinners. This is useful for when you are making a server call and want to display a spinner while the data is being fetched.
 
 ## Server Notes
 
