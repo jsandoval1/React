@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 
 import HomePage from './views/Home/HomePage';
@@ -6,16 +6,19 @@ import Profile from './views/Profile/Profile';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 
-import { Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
+  const {user} = useContext(AuthContext);
+
   return (
     <div>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={user ? <HomePage /> : <Register />} />
           <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={ user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/register" element={ user ? <Navigate to="/" /> : <Register />} />
         </Routes>
     </div>
   );
