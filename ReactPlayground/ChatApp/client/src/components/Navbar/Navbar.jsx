@@ -3,13 +3,18 @@ import { FaBell, FaRegComment, FaSearch, FaUser } from 'react-icons/fa'
 import './Navbar.css'
 
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
+import noAvatar from '../../public/images/person/noAvatar.png'
 
 
 function Navbar() {
+    const { user } = useContext(AuthContext)
+
     return (
         <div className="navbarContainer">
             <div className="navbarLeft">
-                <Link to = '/' style={{ textDecoration: 'none' }}>
+                <Link to='/' style={{ textDecoration: 'none' }}>
                     <span className='logo'> Sandoval </span>
                 </Link>
             </div>
@@ -40,7 +45,9 @@ function Navbar() {
                         <span className="navbarIconBadge"> 1 </span>
                     </div>
                 </div>
-                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="navbarImg" />
+                <Link to={`/profile/${user.username}`} style={{ textDecoration: 'none' }}>
+                    <img src={user.profilePicture ? user.profilePicture : noAvatar} alt="User profile picture" className="navbarImg" />
+                </Link>
             </div>
 
         </div>
