@@ -9,6 +9,11 @@ import Register from './views/Register/Register';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 
+// * Fake login credentials:
+// username: "johndoe1"
+// email: "johndoe1@example.com"
+// password: "password"
+
 function App() {
   const {user} = useContext(AuthContext);
 
