@@ -56,7 +56,7 @@ module.exports.login = async (req, res) => {
         }
 
         // If everything is ok, send a response
-        res.status(200).json({ message: "Logged in successfully" });
+        res.status(200).json(user);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
