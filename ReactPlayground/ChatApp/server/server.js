@@ -1,4 +1,3 @@
-// Declare our dependencies
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -6,14 +5,20 @@ const morgan = require('morgan');
 const multer = require('multer');
 require('dotenv').config();
 
-// This is creating our express app by running the express function
 const app = express();
 
 // Connect to our database with mongoose
 require('./config/mongoose.config');
 
 // This is where we use our middleware, in the order that we want them to run
-app.use(helmet()); // Security middleware should come first
+app.use(
+    helmet({
+        contentSecurityPolicy: false, // disable Content-Security-Policy
+        crossOriginOpenerPolicy: false, // disable Cross-Origin-Opener-Policy
+        crossOriginResourcePolicy: false, // disable Cross-Origin-Resource-Policy
+        xContentTypeOptions: false, // disable X-Content-Type-Options
+    })
+);
 app.use(cors()); // Then CORS
 app.use(express.json()); // Built-in middleware for parsing JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for parsing URL-encoded bodies
