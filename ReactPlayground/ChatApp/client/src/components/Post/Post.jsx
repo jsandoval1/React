@@ -8,7 +8,7 @@ import { IoMdMore } from 'react-icons/io';
 
 import noAvatar from '../../public/images/person/noAvatar.png'
 import './Post.css'
-import axios from 'axios';
+
 
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -34,7 +34,7 @@ function Post({ post }) {
 
     const likeHandler = () => {
         try {
-            axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+            api.put("/posts/" + post._id + "/like", { userId: currentUser._id });
         }
         catch (err) {
             console.log(err);
