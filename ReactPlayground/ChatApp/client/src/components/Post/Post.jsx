@@ -14,6 +14,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 function Post({ post }) {
+    console.log(post.img);
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState({});
@@ -58,14 +59,14 @@ function Post({ post }) {
                         <span className="postUsername"> {user.username} </span>
                         <span className="postDate"> {format(post.createdAt)} </span>
                     </div>
-                    <div className="postTopRight">
+                    <div className="postTopRight"> 
                         <IoMdMore />
                     </div>
                 </div>
 
                 <div className="postCenter">
                     <span className="postText"> {post.desc} </span>
-                    <img src={post.img} alt="" className="postImg" />
+                    {post.img && <img src={`http://localhost:8000/images/${post.img}`} alt="" className="postImg" />}
                 </div>
 
                 <div className="postBottom">
