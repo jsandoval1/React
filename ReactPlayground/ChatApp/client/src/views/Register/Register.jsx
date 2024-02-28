@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import './Register.css'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '../../config/axiosConfig'
 
@@ -50,7 +51,7 @@ function Register() {
                         <input placeholder="Confirm Password" className="loginInput" ref={passwordAgain} required />
                         <button className="loginButton" type="submit"> Sign Up </button>
                         <span className="loginForgot"> Forgot Password? </span>
-                        <button className="loginRegisterButton"> Log into your account </button>
+                        <Link to="/login" className="loginRegisterButton"> Log into your account </Link>
                     </form>
                 </div>
             </div>
