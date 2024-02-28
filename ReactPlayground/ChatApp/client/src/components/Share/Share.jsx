@@ -6,29 +6,40 @@ import noAvatar from '../../public/images/person/noAvatar.png'
 
 import { FaCamera, FaMapMarkerAlt, FaSmile, FaTag } from 'react-icons/fa'
 import axios from 'axios'
+import api from '../../config/axiosConfig'
+
 
 function Share() {
     const { user } = useContext(AuthContext);
 
-    // const [file, setFile] = useState(null);
-
     const desc = useRef();
 
-    const handleSubmit = async (e) => {
+    const [file, setFile] = useState(null);
+
+    const submitHandler = async (e) => {
         e.preventDefault();
         const newPost = {
             userId: user._id,
-            desc: desc.current.value
+            desc: desc.current.value,
+        };
+        if (file) {
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            newPost.img = fileName;
+            console.log(newPost);
+            try {
+                await api.post("/upload", data);
+            } catch (err) { }
         }
-        console.log(newPost);
-
-        // Send the post to the server
         try {
-            axios.post("/posts", newPost);
+            await api.post("/posts", newPost);
+            window.location.reload();
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     return (
         <div className="shareContainer">
@@ -49,7 +60,7 @@ function Share() {
 
                 <hr className="shareHr" />
 
-                <form className="shareBottom" onSubmit={handleSubmit}>
+                <form className="shareBottom" onSubmit={submitHandler}>
 
                     <div className="shareOptions">
                         <label htmlFor='file' className="shareOption">
