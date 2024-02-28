@@ -87,4 +87,9 @@
     cursor: pointer;
     align-self: center;
     margin-top: 20px;
+    /* Remove text decoration and centralize text */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
