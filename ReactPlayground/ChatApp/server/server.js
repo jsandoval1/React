@@ -3,6 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+const multer = require('multer');
 require('dotenv').config();
 
 // This is creating our express app by running the express function
@@ -18,6 +19,29 @@ app.use(express.json()); // Built-in middleware for parsing JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for parsing URL-encoded bodies
 app.use(morgan('dev')); // Logger should come after the body parsing middleware
 
+// * Eventually move this to a separate file
+const path = require("path");
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/images");
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.body.name);
+    },
+});
+
+
+const upload = multer({ storage: storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+    try {
+        return res.status(200).json("File uploded successfully");
+    } catch (error) {
+        console.error(error);
+    }
+});
+// *******
 
 // This is where we use our routes
 const AllMyUserAuthRoutes = require('./routes/userAuth.routes');
