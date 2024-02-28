@@ -62,7 +62,7 @@ axiosInstance.get("/users").then((res) => {
 - dotenv (for environment variables)
 - cors (for cross origin resource sharing)
 - morgan (for logging)
-- helmet (for security)
+- helmet (for security) (Heavy amount of reworking for the images to display)
 - bcryptjs (for password hashing)
 - multer (for file uploads)
 
@@ -76,9 +76,23 @@ axiosInstance.get("/users").then((res) => {
 ### Server Challenges:
 
 1. (1/19/2024) Did not know how to connect multiple model routes to the server. Had only experimented with one model route before.
-2. (1/19/2024) I had never worked with an array of objects in a mongodb document before. This was crucial for the user model because I wanted to store the users friends in an array of objects. I
+2. (1/19/2024) I had never worked with an array of objects in a mongodb document before. This was crucial for the user model because I wanted to store the users friends in an array of objects.
+3. (2/28/2024) This error was caused by the security headers sent by the server. The server was using the helmet middleware, which sets several security headers by default. Some of these headers were causing the browser to block the images due to cross-origin restrictions. I had to **heavily tamper** with the helmet middleware to get the images to display. I had to add a lot of exceptions to the content security policy. **I am aware that this is not the best practice** but in the future I plan to get more familiar with helmet and use an amazon s3 bucket to store the images.
+
 
 ### Server Things Learned:
 
 1. (1/19/2024) Learned how to connect multiple model routes to the server. I did this by creating a folder called routes and then creating a file for each model. Then I imported each model route into the server.js file and used app.use() to connect them to the server.
 2. (1/19/2024) I learned how to store an array of objects in a mongodb document. I did this by creating a new schema for the array of objects and then adding that schema to the user schema. I also learned how to add a new object to the array of objects. I did this by using the $push operator in the update method. I also learned how to remove an object from the array of objects. I did this by using the $pull operator in the update method.
+3. (2/28/2024) I configured helmet to disable the Content-Security-Policy, Cross-Origin-Opener-Policy, Cross-Origin-Resource-Policy, and X-Content-Type-Options headers. This allowed the images to be loaded from the server.
+
+```jsx
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // This is the line that disables the content security policy
+    crossOriginOpenerPolicy: false, // This is the line that disables the cross origin opener policy
+    crossOriginResourcePolicy: false, // This is the line that disables the cross origin resource policy
+    xContentOptions: false, // This is the line that disables the x content type options
+  })
+);
+```
