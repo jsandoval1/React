@@ -8,11 +8,17 @@ import { IoMdMore } from 'react-icons/io';
 
 import noAvatar from '../../public/images/person/noAvatar.png'
 import './Post.css'
+import axios from 'axios';
+
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 function Post({ post }) {
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState({});
+
+    const {user: currentUser} = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -22,7 +28,17 @@ function Post({ post }) {
         fetchUser();
     }, [post.userId]);
 
+    useEffect(() => {
+        setIsLiked(post.likes.includes(currentUser._id))
+    }, [currentUser._id, post.likes])
+
     const likeHandler = () => {
+        try {
+            axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+        }
+        catch (err) {
+            console.log(err);
+        }
         setLike(isLiked ? like - 1 : like + 1)
         setIsLiked(!isLiked)
     }
