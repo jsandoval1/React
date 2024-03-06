@@ -1,29 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import './Rightbar.css'
 
 import { FaBirthdayCake } from 'react-icons/fa';
 import Online from '../Online/Online';
+import noAvatar from '../../public/images/person/noAvatar.png'
 
-//! Dummy Data
-const Users = [
-    {
-        id: 1,
-        profilePicture: "https://via.placeholder.com/150",
-        username: "Melinda Rye",
-    },
-    {
-        id: 2,
-        profilePicture: "https://via.placeholder.com/150",
-        username: "Trevor Rye",
-    },
-    {
-        id: 3,
-        profilePicture: "https://via.placeholder.com/150",
-        username: "Megan Rye",
-    },
-]
+
+import api from '../../config/axiosConfig'
+
 
 function Rightbar({ user }) {
+    const [friends, setFriends] = useState([]);
+
+    useEffect(() => {
+        const getFriends = async () => {
+            try {
+                const res = await api.get("/users/friends/" + user._id);
+                setFriends(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        getFriends();
+    }, [user._id]);
 
     const HomeRightbar = () => {
         return (
@@ -71,30 +71,20 @@ function Rightbar({ user }) {
 
                 <h4 className="rightbarTitle">User Friends</h4>
                 <div className="rightbarFollowings">
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Alice Smith</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Bob Johnson</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Charlie Brown</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">David Lee</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Emma Davis</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="https://via.placeholder.com/150" alt="User" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Frank Wilson</span>
-                    </div>
+                    {friends.map((friend) => (
+                        <div key={friend._id} className="rightbarFollowing">
+                            <img
+                                src={
+                                    friend.profilePicture
+                                        ? friend.profilePicture
+                                        : noAvatar
+                                }
+                                alt=""
+                                className="rightbarFollowingImg"
+                            /> 
+                            <span className="rightbarFollowingName">{friend.username}</span>
+                        </div>
+                    ))}
                 </div>
             </>
         )
