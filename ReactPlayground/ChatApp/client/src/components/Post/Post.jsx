@@ -14,7 +14,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 function Post({ post }) {
-    console.log(post.img);
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState({});
