@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
         // todo: Regex commented out for testing purposes
         // match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character"]
     },
-    profilePictrure: {
+    profilePicture: {
         type: String,
         default: ""
     },
