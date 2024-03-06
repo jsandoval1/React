@@ -78,6 +78,7 @@ axiosInstance.get("/users").then((res) => {
 1. (1/19/2024) Did not know how to connect multiple model routes to the server. Had only experimented with one model route before.
 2. (1/19/2024) I had never worked with an array of objects in a mongodb document before. This was crucial for the user model because I wanted to store the users friends in an array of objects.
 3. (2/28/2024) This error was caused by the security headers sent by the server. The server was using the helmet middleware, which sets several security headers by default. Some of these headers were causing the browser to block the images due to cross-origin restrictions. I had to **heavily tamper** with the helmet middleware to get the images to display. I had to add a lot of exceptions to the content security policy. **I am aware that this is not the best practice** but in the future I plan to get more familiar with helmet and use an amazon s3 bucket to store the images.
+4. (2/28/2024) I realized I made a huge mistake in the initial development of the user model. I made the typo of "profilePictrure" instead of "profilePicture". This caused the profile picture to not be stored in the database. I had to go back and fix this typo in the user model and the user routes.
 
 
 ### Server Things Learned:
@@ -95,4 +96,21 @@ app.use(
     xContentOptions: false, // This is the line that disables the x content type options
   })
 );
+```
+4. (2/28/2024) I learned how to use the $rename operator in the update method to rename a field in the user model. I used this to fix the typo in the user model. I did some research on mongodb and played around for awhile and set this up in the userAction controller at the bottom of the file (only while I needed it).
+
+```jsx
+async function renameField() {
+    const result = await User.updateMany({}, { $rename: { "profilePictrure": "profilePicture" } }); // This is the line that renames the field
+    console.log('updateMany result:', result); // This is the line that logs the result of the updateMany method
+    console.log('Field renamed successfully'); // This is the line that logs a success message (if the field was renamed successfully)
+}
+renameField().catch(console.error);
+
+async function fetchUser() {
+    const user = await User.findById('65a9fad689e655b361835880'); // This is the line that finds a user by id
+    console.log(user); // This is the line that logs the user so we can see the changes
+}
+
+fetchUser().catch(console.error);
 ```
