@@ -16,6 +16,7 @@ function Rightbar({ user }) {
     useEffect(() => {
         const getFriends = async () => {
             try {
+                console.log(user._id)
                 const res = await api.get("/users/friends/" + user._id);
                 setFriends(res.data);
             } catch (err) {
@@ -23,7 +24,7 @@ function Rightbar({ user }) {
             }
         }
         getFriends();
-    }, [user._id]);
+    }, [user]);
 
     const HomeRightbar = () => {
         return (
@@ -35,9 +36,9 @@ function Rightbar({ user }) {
                 <img className="rightbarAd" src="https://via.placeholder.com/300x250" alt="Ad" />
                 <h4 className="rightbarTitle">Online Friends</h4>
                 <ul className="rightbarFriendList">
-                    {Users.map((u) => (
+                    {/* {Users.map((u) => (
                         <Online key={u.id} user={u} />
-                    ))}
+                    ))} */}
                 </ul>
             </>
         )
