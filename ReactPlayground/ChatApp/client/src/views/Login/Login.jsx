@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom';
 
 import './Login.css'
 import { BeatLoader } from 'react-spinners'
@@ -40,9 +41,11 @@ function Login() {
                             {isFetching ? <BeatLoader color='white' size={10} /> : 'Log In'}
                         </button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton" disabled={isFetching}>
-                            {isFetching ? <BeatLoader color='white' size={10} /> : 'Create a New Account'}
-                        </button>
+                        <Link to="/register" className="loginRegisterButtonLink">
+                            <button className="loginRegisterButton" disabled={isFetching}>
+                                {isFetching ? <BeatLoader color='white' size={10} /> : 'Create a New Account'}
+                            </button>
+                        </Link>
                     </form>
                 </div>
             </div>
