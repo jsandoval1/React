@@ -66,6 +66,7 @@
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s; /* Add transition for smooth color change */
 }
 
 .loginButton:hover{
@@ -83,7 +84,7 @@
     cursor: pointer;
 }
 
-.loginRegisterButton{
+.loginRegisterButton {
     width: 200px;
     height: 50px;
     border-radius: 10px;
@@ -94,5 +95,21 @@
     font-weight: bold;
     cursor: pointer;
     align-self: center;
-    margin-top: 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    transition: background-color 0.3s; /* Add transition for smooth color change */
+}
+
+.loginRegisterButton:hover {
+    background-color: #36a420;
+}
+
+.loginRegisterButtonLink{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
 }
