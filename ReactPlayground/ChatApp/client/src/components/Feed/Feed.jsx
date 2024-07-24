@@ -25,7 +25,9 @@ function Feed({ username }) {
     return (
         <div className="feedContainer">
             <div className="feedWrapper">
-                <Share />
+                {
+                    (!username || username === user.username) && <Share />
+                }
                 {post.map((p) => (
                     <Post key={p._id} post={p} />
                 ))}
