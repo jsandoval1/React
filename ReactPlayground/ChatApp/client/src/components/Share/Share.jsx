@@ -5,7 +5,6 @@ import { AuthContext } from '../../context/AuthContext'
 import noAvatar from '../../public/images/person/noAvatar.png'
 
 import { FaCamera, FaMapMarkerAlt, FaSmile, FaTag } from 'react-icons/fa'
-import axios from 'axios'
 import api from '../../config/axiosConfig'
 
 
