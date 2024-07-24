@@ -15,14 +15,18 @@ function Rightbar({ user }) {
 
     useEffect(() => {
         const getFriends = async () => {
+            if (!user || !user._id) { //Added this line to prevent error when user is undefined
+                console.error("User or User ID is undefined"); 
+                return;
+            }
             try {
-                console.log(user._id)
+                console.log(user._id);
                 const res = await api.get("/users/friends/" + user._id);
                 setFriends(res.data);
             } catch (err) {
                 console.log(err);
             }
-        }
+        };
         getFriends();
     }, [user]);
 
@@ -82,7 +86,7 @@ function Rightbar({ user }) {
                                 }
                                 alt=""
                                 className="rightbarFollowingImg"
-                            /> 
+                            />
                             <span className="rightbarFollowingName">{friend.username}</span>
                         </div>
                     ))}
