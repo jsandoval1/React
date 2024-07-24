@@ -124,3 +124,25 @@ module.exports.unfollowUser = async (req, res) => {
         res.status(403).json({ message: "You cannot unfollow yourself" });
     }
 };
+
+// // PUT endpoint to update a user
+// module.exports.updateUser = async (req, res) => {
+//     try {
+//         const updatedUser = await User.findByIdAndUpdate(
+//             req.params.id,
+//             {
+//                 city: req.body.city,
+//                 desc: req.body.desc,
+//                 from: req.body.from
+//             },
+//             { new: true, runValidators: true }
+//         );
+//         if (!updatedUser) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
+//         res.status(200).json(updatedUser);
+//     }
+//     catch (err) {
+//         res.status(400).json({ message: err.message });
+//     }
+// }
