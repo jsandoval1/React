@@ -8,6 +8,7 @@ import noAvatar from '../../public/images/person/noAvatar.png'
 
 
 import api from '../../config/axiosConfig'
+import { Link } from 'react-router-dom';
 
 
 function Rightbar({ user }) {
@@ -16,7 +17,7 @@ function Rightbar({ user }) {
     useEffect(() => {
         const getFriends = async () => {
             if (!user || !user._id) { //Added this line to prevent error when user is undefined
-                console.error("User or User ID is undefined"); 
+                console.error("User or User ID is undefined");
                 return;
             }
             try {
@@ -77,19 +78,20 @@ function Rightbar({ user }) {
                 <h4 className="rightbarTitle">User Friends</h4>
                 <div className="rightbarFollowings">
                     {friends.map((friend) => (
-                        <div key={friend._id} className="rightbarFollowing">
-                            <img
-                                src={
-                                    friend.profilePicture
-                                        ? friend.profilePicture
-                                        : noAvatar
-                                }
-                                alt=""
-                                className="rightbarFollowingImg"
-                            />
-                            <span className="rightbarFollowingName">{friend.username}</span>
-                        </div>
-                    ))}
+                        < Link to={"/profile/" + friend.username} style={{ textDecoration: "none" }} >
+                            <div key={friend._id} className="rightbarFollowing">
+                                <img
+                                    src={
+                                        friend.profilePicture
+                                            ? friend.profilePicture
+                                            : noAvatar
+                                    }
+                                    alt=""
+                                    className="rightbarFollowingImg"
+                                />
+                                <span className="rightbarFollowingName">{friend.username}</span>
+                            </div>
+                        </Link>))}
                 </div>
             </>
         )
