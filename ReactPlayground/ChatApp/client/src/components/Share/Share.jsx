@@ -36,10 +36,9 @@ function Share() {
         try {
             await api.post("/posts", newPost);
             window.location.reload();
-        } catch (err) {
-            console.log(err);
-        }
+        } catch (err) { }
     };
+
 
     return (
         <div className="shareContainer">
@@ -95,3 +94,4 @@ function Share() {
 }
 
 export default Share
+
