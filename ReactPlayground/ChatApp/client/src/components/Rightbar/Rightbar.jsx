@@ -75,26 +75,41 @@ function Rightbar({ user }) {
                     </div>
                 </div>
 
-                <h4 className="rightbarTitle">User Friends</h4>
-                <div className="rightbarFollowings">
-                    {friends.map((friend) => (
-                        < Link to={"/profile/" + friend.username} style={{ textDecoration: "none" }} >
-                            <div key={friend._id} className="rightbarFollowing">
-                                <img
-                                    src={
-                                        friend.profilePicture
-                                            ? friend.profilePicture
-                                            : noAvatar
-                                    }
-                                    alt=""
-                                    className="rightbarFollowingImg"
-                                />
-                                <span className="rightbarFollowingName">{friend.username}</span>
-                            </div>
-                        </Link>))}
-                </div>
+                <h4 className="rightbarTitle">Following:</h4>
+                {friends.length === 0 ? (
+                    <div className="rightbarNoFollowing">
+                        {user.username} is not following anyone.
+                    </div>
+                ) : (
+                    <div className="rightbarFollowings">
+                        {friends.map((friend) => (
+                            <Link
+                                to={"/profile/" + friend.username}
+                                style={{ textDecoration: "none" }}
+                            >
+                                <div
+                                    key={friend._id}
+                                    className="rightbarFollowing"
+                                >
+                                    <img
+                                        src={
+                                            friend.profilePicture
+                                                ? friend.profilePicture
+                                                : noAvatar
+                                        }
+                                        alt=""
+                                        className="rightbarFollowingImg"
+                                    />
+                                    <span className="rightbarFollowingName">
+                                        {friend.username}
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </>
-        )
+        );
     }
 
     return (
