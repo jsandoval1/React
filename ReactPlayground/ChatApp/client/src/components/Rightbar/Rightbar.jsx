@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 import './Rightbar.css'
 
 import { FaBirthdayCake } from 'react-icons/fa';
+import { FaMinus } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
+
 import Online from '../Online/Online';
 import noAvatar from '../../public/images/person/noAvatar.png'
 
@@ -13,6 +17,12 @@ import { Link } from 'react-router-dom';
 
 function Rightbar({ user }) {
     const [friends, setFriends] = useState([]);
+    const { user: currentUser } = useContext(AuthContext);
+    const [followed, setFollowed] = useState(false);
+
+    useEffect(() => {
+        setFollowed(currentUser.following.includes(user?._id));
+    }, [currentUser, user?._id]);
 
     useEffect(() => {
         const getFriends = async () => {
@@ -29,6 +39,21 @@ function Rightbar({ user }) {
         };
         getFriends();
     }, [user]);
+
+    const handleClick = async () => {
+        try {
+            if (followed) {
+                await api.put(`/users/${user._id}/unfollow`, { userId: currentUser._id });
+                dispatch({ type: "UNFOLLOW", payload: user._id });
+            } else {
+                await api.put(`/users/${user._id}/follow`, { userId: currentUser._id });
+                dispatch({ type: "FOLLOW", payload: user._id });
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        setFollowed(!followed);
+    };
 
     const HomeRightbar = () => {
         return (
@@ -51,6 +76,12 @@ function Rightbar({ user }) {
     const ProfileRightbar = () => {
         return (
             <>
+                {user.username !== currentUser.username && (
+                    <button className="rightbarFollowButton" onClick={handleClick}>
+                        {followed ? "Unfollow" : "Follow"}
+                        {followed ? <FaMinus /> : <FaPlus />}
+                    </button>
+                )}
                 <h4 className="rightbarTitle">User Information</h4>
 
                 <div className="rightbarInfo">
