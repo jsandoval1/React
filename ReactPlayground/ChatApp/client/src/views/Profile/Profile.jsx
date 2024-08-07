@@ -14,6 +14,7 @@ import Rightbar from '../../components/Rightbar/Rightbar'
 
 
 function Profile() {
+    console.log(`Profile.jsx: username: ${useParams().username}`);
     const [user, setUser] = useState({});
     const username = useParams().username;
 
@@ -23,7 +24,7 @@ function Profile() {
             setUser(res.data);
         };
         fetchUser();
-    }, []);
+    }, [username]);
 
     return (
         <>
