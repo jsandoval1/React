@@ -85,3 +85,27 @@
     align-items: center;
     justify-content: center;
 }
+
+.rightbarFollowButton{
+    margin-top: 10px;
+    padding: 5px 7px;
+    border: none;
+    background-color: #1877f2;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 5px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.rightbarFollowButton:focus{
+    outline: none;
+}
+
+.rightbarFollowButton:hover{
+    background-color: #0f5a8c;
+}
