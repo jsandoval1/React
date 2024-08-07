@@ -21,7 +21,6 @@ function Rightbar({ user }) {
                 return;
             }
             try {
-                console.log(user._id);
                 const res = await api.get("/users/friends/" + user._id);
                 setFriends(res.data);
             } catch (err) {
