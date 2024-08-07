@@ -9,6 +9,8 @@ function Feed({ username }) {
     const [post, setPost] = useState([]);
     const { user } = useContext(AuthContext);
 
+    console.log(`Feed.jsx: username: ${username}`);
+
     // Fetch timeline posts from the server
     useEffect(() => {
         const fetchPost = async () => {
