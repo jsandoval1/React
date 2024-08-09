@@ -87,7 +87,7 @@
 }
 
 .rightbarFollowButton{
-    margin-top: 10px;
+    width: 70%;
     padding: 5px 7px;
     border: none;
     background-color: #1877f2;
@@ -100,12 +100,21 @@
     justify-content: center;
     font-size: 16px;
     font-weight: 500;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
 }
 
 .rightbarFollowButton:focus{
     outline: none;
 }
 
-.rightbarFollowButton:hover{
-    background-color: #0f5a8c;
+.rightbarFollowButton:hover {
+    background-color: red; /* Change background color to red on hover */
+}
+
+.rightbarFollowButton.follow:hover {
+    background-color: green; /* Change background color to green on hover when following */
+    box-shadow: 0 0 10px green; /* Add green glow effect */
 }
