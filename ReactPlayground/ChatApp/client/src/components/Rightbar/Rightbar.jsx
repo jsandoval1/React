@@ -17,43 +17,45 @@ import { Link } from 'react-router-dom';
 
 function Rightbar({ user }) {
     const [friends, setFriends] = useState([]);
-    const { user: currentUser } = useContext(AuthContext);
+    const { user: currentUser, dispatch } = useContext(AuthContext);
     const [followed, setFollowed] = useState(false);
 
     useEffect(() => {
-        setFollowed(currentUser.following.includes(user?._id));
-    }, [currentUser, user?._id]);
-
-    useEffect(() => {
+        if (!user || !user._id) {
+            console.log('User or user ID is undefined');
+            return;
+        }
+        setFollowed(currentUser.following.includes(user._id));
         const getFriends = async () => {
-            if (!user || !user._id) { //Added this line to prevent error when user is undefined
-                console.error("User or User ID is undefined");
-                return;
-            }
             try {
-                const res = await api.get("/users/friends/" + user._id);
-                setFriends(res.data);
+                const friendList = await api.get("/users/friends/" + user._id);
+                setFriends(friendList.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getFriends();
-    }, [user]);
+    }, [user, currentUser.following]);
 
     const handleClick = async () => {
         try {
             if (followed) {
-                await api.put(`/users/${user._id}/unfollow`, { userId: currentUser._id });
+                await api.put(`/users/${user._id}/unfollow`, {
+                    userId: currentUser._id,
+                });
                 dispatch({ type: "UNFOLLOW", payload: user._id });
             } else {
-                await api.put(`/users/${user._id}/follow`, { userId: currentUser._id });
+                await api.put(`/users/${user._id}/follow`, {
+                    userId: currentUser._id,
+                });
                 dispatch({ type: "FOLLOW", payload: user._id });
             }
+            setFollowed(!followed);
         } catch (err) {
-            console.log(err);
+            console.error('Error:', err);
         }
-        setFollowed(!followed);
-    };
+    }
+
 
     const HomeRightbar = () => {
         return (
@@ -77,7 +79,9 @@ function Rightbar({ user }) {
         return (
             <>
                 {user.username !== currentUser.username && (
-                    <button className="rightbarFollowButton" onClick={handleClick}>
+                    <button
+                        className={`rightbarFollowButton ${followed ? '' : 'follow'}`}
+                        onClick={handleClick}>
                         {followed ? "Unfollow" : "Follow"}
                         {followed ? <FaMinus /> : <FaPlus />}
                     </button>
@@ -114,6 +118,7 @@ function Rightbar({ user }) {
                     <div className="rightbarFollowings">
                         {friends.map((friend) => (
                             <Link
+                                key={friend._id} // Ensure 'friend.id' is a unique identifier
                                 to={"/profile/" + friend.username}
                                 style={{ textDecoration: "none" }}
                             >
