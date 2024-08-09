@@ -22,7 +22,6 @@ function Rightbar({ user }) {
 
     useEffect(() => {
         if (!user || !user._id) {
-            console.log('User or user ID is undefined');
             return;
         }
         setFollowed(currentUser.following.includes(user._id));
