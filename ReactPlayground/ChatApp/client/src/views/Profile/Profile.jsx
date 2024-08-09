@@ -14,7 +14,6 @@ import Rightbar from '../../components/Rightbar/Rightbar'
 
 
 function Profile() {
-    console.log(`Profile.jsx: username: ${useParams().username}`);
     const [user, setUser] = useState({});
     const username = useParams().username;
 
@@ -35,7 +34,7 @@ function Profile() {
                     <div className="profileRightTop">
                         <div className="profileCover">
                             <img className="profileCoverImg"
-                                src= {user.coverPicture || noCover}
+                                src={user.coverPicture || noCover}
                                 alt="Mountain" />
                             <img className="profileUserImg"
                                 src={user.profilePicture || noAvatar}
