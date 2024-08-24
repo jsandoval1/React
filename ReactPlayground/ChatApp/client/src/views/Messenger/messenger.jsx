@@ -4,6 +4,7 @@ import './messenger.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Conversation from '../../components/conversation/conversation'
 import Message from '../../components/message/Message'
+import ChatOnline from '../../components/chatOnline/ChatOnline'
 
 function messenger() {
 
@@ -47,7 +48,10 @@ function messenger() {
                 </div>
                 <div className="chatOnline">
                     <div className="chatOnlineWrapper">
-                        Chat Online
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
                     </div>
                 </div>
             </div>
