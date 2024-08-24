@@ -3,6 +3,7 @@ import './messenger.css'
 
 import Navbar from '../../components/Navbar/Navbar'
 import Conversation from '../../components/conversation/conversation'
+import Message from '../../components/message/Message'
 
 function messenger() {
 
@@ -21,7 +22,27 @@ function messenger() {
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
-                        Chat Box
+                        <div className="chatBoxTop">
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
+                        </div>
+                        <div className="chatBoxBottom">
+                            <textarea
+                                className="chatMessageInput"
+                                placeholder="Write something...">
+                            </textarea>
+                            <button className="chatSubmitButton">Send</button>
+                        </div>
                     </div>
                 </div>
                 <div className="chatOnline">
