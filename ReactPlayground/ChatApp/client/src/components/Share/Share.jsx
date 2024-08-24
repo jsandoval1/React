@@ -1,10 +1,12 @@
+
+
 import React from 'react'
 import './Share.css'
 import { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import noAvatar from '../../public/images/person/noAvatar.png'
 
-import { FaCamera, FaMapMarkerAlt, FaSmile, FaTag } from 'react-icons/fa'
+import { FaCamera, FaMapMarkerAlt, FaSmile, FaTag, FaTrash } from 'react-icons/fa'
 import api from '../../config/axiosConfig'
 
 
@@ -57,7 +59,14 @@ function Share() {
                 </div>
 
                 <hr className="shareHr" />
-
+                {file && (
+                    <div className="shareImgContainer">
+                        <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+                        <button onClick={() => setFile(null)}>
+                            <FaTrash className="shareCancelImg" />
+                        </button>
+                    </div>
+                )}
                 <form className="shareBottom" onSubmit={submitHandler}>
 
                     <div className="shareOptions">
