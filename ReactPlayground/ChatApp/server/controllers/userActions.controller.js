@@ -44,7 +44,7 @@ module.exports.getUser = async (req, res) => {
         const user = userId
             ? await User.findById(userId)
             : await User.findOne({ username: username });
-        const { password, ...info } = user._doc;
+        const { password, updatedAt, ...info } = user._doc;
         res.status(200).json(info);
     } catch (err) {
         res.status(500).json(err);
