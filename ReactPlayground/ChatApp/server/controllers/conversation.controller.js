@@ -20,7 +20,7 @@ module.exports.getConversations = async (req, res) => {
         const conversations = await Conversation.find({
             members: { $in: [req.params.userId] }
         });
-        res.status(200).json({ message: "Conversations retrieved successfully", conversations: conversations });
+        res.status(200).json(conversations);
     } catch (err) {
         res.status(500).json(err);
     }
