@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './conversation.css'
 
-function conversation() {
+import { useState } from 'react'
+import api from '../../config/axiosConfig'
+
+function conversation({ conversation, currentUser }) {
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const friendId = conversation.members.find((m) => m !== currentUser._id)
+
+        const getUser = async () => {
+            try {
+                const res = await api.get("/users?userId=" + friendId)
+                console.log(res.data)
+                setUser(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }, [currentUser, conversation])
+
     return (
         <>
             <div className="conversation">
