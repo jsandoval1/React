@@ -3,7 +3,8 @@ import './conversation.css'
 
 import { useState } from 'react'
 import api from '../../config/axiosConfig'
-import noAvatar from '../../../public/images/person/noAvatar.png'
+import noAvatar from '../../public/images/person/noAvatar.png'
+
 
 
 function conversation({ conversation, currentUser }) {
