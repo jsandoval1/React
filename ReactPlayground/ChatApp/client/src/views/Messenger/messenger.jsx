@@ -20,7 +20,6 @@ function messenger() {
             try {
                 const res = await api.get("/conversations/" + user._id)
                 setConversations(res.data)
-                console.log(res.data)
             } catch (err) {
                 console.log(err)
             }
@@ -28,54 +27,54 @@ function messenger() {
         getConversations()
     }, [user._id])
 
-        return (
-            <>
-                <Navbar />
-                <div className="messenger">
-                    <div className="chatMenu">
-                        <div className="chatMenuWrapper">
-                            <input placeholder="Search for friends" className="chatMenuInput" />
-                            {conversations.map((c) => (
-                                <Conversation conversation={c} currentUser={user} />
-                            ))}
-                        </div>
+    return (
+        <>
+            <Navbar />
+            <div className="messenger">
+                <div className="chatMenu">
+                    <div className="chatMenuWrapper">
+                        <input placeholder="Search for friends" className="chatMenuInput" />
+                        {conversations.map((c) => (
+                            <Conversation key={c._id} conversation={c} currentUser={user} />
+                        ))}
                     </div>
-                    <div className="chatBox">
-                        <div className="chatBoxWrapper">
-                            <div className="chatBoxTop">
-                                <Message />
-                                <Message own />
-                                <Message />
-                                <Message />
-                                <Message own />
-                                <Message />
-                                <Message />
-                                <Message own />
-                                <Message />
-                                <Message />
-                                <Message own />
-                                <Message />
-                            </div>
-                            <div className="chatBoxBottom">
-                                <textarea
-                                    className="chatMessageInput"
-                                    placeholder="Write something...">
-                                </textarea>
-                                <button className="chatSubmitButton">Send</button>
-                            </div>
+                </div>
+                <div className="chatBox">
+                    <div className="chatBoxWrapper">
+                        <div className="chatBoxTop">
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
+                            <Message />
+                            <Message own />
+                            <Message />
                         </div>
-                    </div>
-                    <div className="chatOnline">
-                        <div className="chatOnlineWrapper">
-                            <ChatOnline />
-                            <ChatOnline />
-                            <ChatOnline />
-                            <ChatOnline />
+                        <div className="chatBoxBottom">
+                            <textarea
+                                className="chatMessageInput"
+                                placeholder="Write something...">
+                            </textarea>
+                            <button className="chatSubmitButton">Send</button>
                         </div>
                     </div>
                 </div>
-            </>
-        )
-    }
+                <div className="chatOnline">
+                    <div className="chatOnlineWrapper">
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
 
 export default messenger
