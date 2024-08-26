@@ -117,4 +117,4 @@ fetchUser().catch(console.error);
 
 <!-- (3/8/24) Not going to lie, I have confused myself with the build. My rightbar is no longer working properly and I am not sure why. Video left off at 1:49:00. I am going to try to fix -->
 
-<!-- (8/11/2) Left of at 2:59:00. -->
+<!-- Left off at 30:46 -->
