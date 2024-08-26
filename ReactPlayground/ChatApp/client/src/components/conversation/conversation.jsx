@@ -3,31 +3,40 @@ import './conversation.css'
 
 import { useState } from 'react'
 import api from '../../config/axiosConfig'
+import noAvatar from '../../../public/images/person/noAvatar.png'
+
 
 function conversation({ conversation, currentUser }) {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        const friendId = conversation.members.find((m) => m !== currentUser._id)
+        const friendId = conversation.members.find((m) => m !== currentUser._id);
 
         const getUser = async () => {
             try {
-                const res = await api.get("/users?userId=" + friendId)
-                console.log(res.data)
-                setUser(res.data)
+                const res = await api("/users?userId=" + friendId);
+                setUser(res.data);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        }
-    }, [currentUser, conversation])
+        };
+        getUser();
+    }, [currentUser, conversation]);
 
     return (
         <>
             <div className="conversation">
                 <img className="conversationImg"
-                    src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    src={
+                        user?.profilePicture
+                            ? user.profilePicture
+                            : noAvatar
+                    }
                     alt="" />
-                <span className="conversationName">John Doe</span>
+
+                <span className="conversationName">
+                    {user?.username}
+                </span>
             </div>
         </>
     )
