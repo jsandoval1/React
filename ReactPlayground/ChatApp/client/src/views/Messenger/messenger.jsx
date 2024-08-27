@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import './messenger.css'
 
 import Navbar from '../../components/Navbar/Navbar'
@@ -7,12 +7,13 @@ import Message from '../../components/message/Message'
 import ChatOnline from '../../components/chatOnline/ChatOnline'
 
 import { AuthContext } from '../../context/AuthContext'
-import { useState } from 'react'
 import api from '../../config/axiosConfig'
 
 
 function messenger() {
     const [conversations, setConversations] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState([]);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
@@ -25,7 +26,22 @@ function messenger() {
             }
         }
         getConversations()
-    }, [user._id])
+    }, [user._id]);
+
+    useEffect(() => {
+        const getMessages = async () => {
+            try {
+                const res = await api.get("/messages/" + currentChat?._id);
+                setMessages(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        if (currentChat) {
+            getMessages();
+        }
+    }, [currentChat]);
+
 
     return (
         <>
@@ -34,34 +50,52 @@ function messenger() {
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
                         <input placeholder="Search for friends" className="chatMenuInput" />
-                        {conversations.map((c) => (
+                        <div>
+                            {/* {conversations.map((c) => (
+                                <div onClick={() => setCurrentChat(c)}>
+                                    <Conversation key={c._id} conversation={c} currentUser={user} />
+                                </div>
+                            ))} */}
+                        </div>
+                        <div>
+                            {conversations.map((c) => (
+                                <div key={c._id} onClick={() => setCurrentChat(c)}>
+                                    <Conversation conversation={c} currentUser={user} />
+                                </div>
+                            ))}
+                        </div>
+                        {/* {conversations.map((c) => (
                             <Conversation key={c._id} conversation={c} currentUser={user} />
-                        ))}
+                        ))} */}
                     </div>
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
-                        <div className="chatBoxTop">
-                            <Message />
-                            <Message own />
-                            <Message />
-                            <Message />
-                            <Message own />
-                            <Message />
-                            <Message />
-                            <Message own />
-                            <Message />
-                            <Message />
-                            <Message own />
-                            <Message />
-                        </div>
-                        <div className="chatBoxBottom">
-                            <textarea
-                                className="chatMessageInput"
-                                placeholder="Write something...">
-                            </textarea>
-                            <button className="chatSubmitButton">Send</button>
-                        </div>
+                        {currentChat ? (
+                            <>
+                                <div className="chatBoxTop">
+                                    <Message />
+                                    <Message own />
+                                    <Message />
+                                    <Message />
+                                    <Message own />
+                                    <Message />
+                                    <Message />
+                                    <Message own />
+                                    <Message />
+                                    <Message />
+                                    <Message own />
+                                    <Message />
+                                </div>
+                                <div className="chatBoxBottom">
+                                    <textarea
+                                        className="chatMessageInput"
+                                        placeholder="Write something...">
+                                    </textarea>
+                                    <button className="chatSubmitButton">Send</button>
+                                </div>
+                            </>
+                        ) : (<span className="noConversationText">Open a conversation to start a chat.</span>)}
                     </div>
                 </div>
                 <div className="chatOnline">
