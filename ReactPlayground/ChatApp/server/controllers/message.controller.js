@@ -3,7 +3,6 @@ const Message = require('../models/message.model');
 
 // Create a message
 module.exports.createMessage = async (req, res) => {
-    // Pull conversationId, sender, and text from req.body (According to Message model)
     const newMessage = new Message(req.body);
     try {
         const savedMessage = await newMessage.save();
