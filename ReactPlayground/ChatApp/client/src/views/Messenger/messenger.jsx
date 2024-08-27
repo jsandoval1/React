@@ -42,7 +42,6 @@ function messenger() {
         }
     }, [currentChat]);
 
-
     return (
         <>
             <Navbar />
@@ -51,11 +50,6 @@ function messenger() {
                     <div className="chatMenuWrapper">
                         <input placeholder="Search for friends" className="chatMenuInput" />
                         <div>
-                            {/* {conversations.map((c) => (
-                                <div onClick={() => setCurrentChat(c)}>
-                                    <Conversation key={c._id} conversation={c} currentUser={user} />
-                                </div>
-                            ))} */}
                         </div>
                         <div>
                             {conversations.map((c) => (
@@ -64,9 +58,6 @@ function messenger() {
                                 </div>
                             ))}
                         </div>
-                        {/* {conversations.map((c) => (
-                            <Conversation key={c._id} conversation={c} currentUser={user} />
-                        ))} */}
                     </div>
                 </div>
                 <div className="chatBox">
@@ -74,18 +65,9 @@ function messenger() {
                         {currentChat ? (
                             <>
                                 <div className="chatBoxTop">
-                                    <Message />
-                                    <Message own />
-                                    <Message />
-                                    <Message />
-                                    <Message own />
-                                    <Message />
-                                    <Message />
-                                    <Message own />
-                                    <Message />
-                                    <Message />
-                                    <Message own />
-                                    <Message />
+                                    {messages.map((m) => (
+                                        <Message key={m._id} message={m} own={m.sender === user._id} />
+                                    ))}
                                 </div>
                                 <div className="chatBoxBottom">
                                     <textarea
