@@ -45,3 +45,6 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users);
     });
 });
+
+// Terminal feedback on running the server
+console.log("Server is running on port 8900");
