@@ -9,8 +9,10 @@ let users = [];
 const addUser = (userId, socketId) => {
     const user = users.find((user) => user.userId === userId);
     if (user) {
-        user.socketId = socketId; // Update socket ID if user already exists
-        console.log(`User: ${userId} has reconnected.`); 
+        // Update socket ID if user already exists
+        user.socketId = socketId;
+        // This line is very important because if a user leaves the chat and reconnects, the socket ID will be updated.
+        // Otherwise, the user will not receive messages.
     } else {
         users.push({ userId, socketId });
     }
@@ -25,8 +27,6 @@ const getUser = (userId) => {
 };
 
 io.on("connection", (socket) => {
-    // When connect
-    console.log("a user connected.");
 
     // Take userId and socketId from user
     socket.on("addUser", (userId) => {
@@ -47,7 +47,6 @@ io.on("connection", (socket) => {
 
     // When disconnect
     socket.on("disconnect", () => {
-        console.log("a user disconnected!");
         removeUser(socket.id);
         io.emit("getUsers", users);
     });
