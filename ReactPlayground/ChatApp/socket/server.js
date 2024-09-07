@@ -7,8 +7,13 @@ const io = require("socket.io")(8900, {
 let users = [];
 
 const addUser = (userId, socketId) => {
-    !users.some((user) => user.userId === userId) &&
+    const user = users.find((user) => user.userId === userId);
+    if (user) {
+        user.socketId = socketId; // Update socket ID if user already exists
+        console.log(`User: ${userId} has reconnected.`); 
+    } else {
         users.push({ userId, socketId });
+    }
 };
 
 const removeUser = (socketId) => {
@@ -20,25 +25,27 @@ const getUser = (userId) => {
 };
 
 io.on("connection", (socket) => {
-    //when ceonnect
+    // When connect
     console.log("a user connected.");
 
-    //take userId and socketId from user
+    // Take userId and socketId from user
     socket.on("addUser", (userId) => {
         addUser(userId, socket.id);
         io.emit("getUsers", users);
     });
 
-    //send and get message
+    // Send and get message
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
         const user = getUser(receiverId);
-        io.to(user.socketId).emit("getMessage", {
-            senderId,
-            text,
-        });
+        const message = { senderId, text };
+        if (user) {
+            io.to(user.socketId).emit("getMessage", message);
+        } else {
+            console.log(`User not found: ${receiverId}`);
+        }
     });
 
-    //when disconnect
+    // When disconnect
     socket.on("disconnect", () => {
         console.log("a user disconnected!");
         removeUser(socket.id);
@@ -46,5 +53,4 @@ io.on("connection", (socket) => {
     });
 });
 
-// Terminal feedback on running the server
 console.log("Server is running on port 8900");
