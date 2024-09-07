@@ -20,7 +20,14 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
         setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
     }, [friends, onlineUsers]);
 
-    // console.log('onlineFriends:', onlineFriends);
+    const handleClick = async (user) => {
+        try {
+            const res = await api.get(`/conversations/find/${currentId}/${user._id}`);
+            setCurrentChat(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <>
@@ -29,7 +36,8 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
                     <div
                         key={o._id}
                         className="chatOnlineFriend"
-                        onClick={() => setCurrentChat(o)}>
+                        onClick={() => handleClick(o)}
+                    >
                         <div className="chatOnlineImgContainer">
                             <img
                                 className="chatOnlineImg"
